@@ -1,7 +1,7 @@
 <?php 
 class ControllerAccueil{
 
-    private $_articleManager;
+    private $_patientManager;
     private $_view;
 
     public function __construct($url){
@@ -15,10 +15,11 @@ class ControllerAccueil{
         $this->_patientManager = new PatientManager;
         $patients = $this->_patientManager->getPatients();
 
-        // Pass $patients to the view
-        $data = ['patients' => $patients];
-        extract($data);
-
         require_once('src/views/viewAccueil.php');
+
+        // Pass $patients to the view
+        //$data = ['patients' => $patients];
+        //extract($data);
+
     }
 }

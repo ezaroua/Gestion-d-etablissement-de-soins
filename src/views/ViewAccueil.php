@@ -76,35 +76,19 @@
         <th>Medecin traitant</th>
         
     </tr>
-    <tr>
-        <td>9966</td>
-        <td>VERBEKE, FRANK</td>
-        <td>23/08/1963</td>
-        <td>F</td>
-        <td>HOSPITALISATION CHIRURGIE</td>
-        <td>Diagnostique Exemple</td>
-    </tr>
 
     <?php foreach($patients as $patient): ?>
         <tr>
-            <td><?= $patient->id() ?> test</td>
-            <td><?= $patient->nom() ?> </td>
-            <td><?= $patient->dateNaissance() ?></td>
+            <td><?= $patient->id_user() ?></td>
+            <td><?= $patient->nom(). ' ' .$patient->prenom()?> </td>
+            <td><?= $patient->date_naissance() ?></td>
             <td><?= $patient->sexe() ?></td>
-            <td></td>
-            <td></td>
+            <td><?= $patient->num_sec() ?></td>
+            <td><?= $patient->MedecinTraitant() ?></td>
         </tr>
     <?php endforeach; ?>
-    <!-- Ajoutez d'autres lignes de données codées en dur si nécessaire -->
+
 </table>
 
-<?php foreach($patients as $patient): ?>
-        
-           <?= $patient->id() ?> 
-           <?= $patient->nom() ?> 
-           <?= $patient->dateNaissance() ?>
-           <?= $patient->sexe() ?>
-        
-    <?php endforeach; ?>
 </body>
 </html>

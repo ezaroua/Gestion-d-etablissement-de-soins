@@ -2,17 +2,19 @@
 
 class Patient{
 
-    private $_id;
+    private $_id_user;
     private $_nom;
     private $_prenom;
     private $_sexe;
-    private $_numSecu;
-    private $_medecinTraitant;
+    private $_num_sec;
+    private $_MedecinTraitant;
     private $_dateNaissance;
 
     //constructeur
-    public function __construct(array $data){
-        $this->hydrate($data);
+    public function __construct(array $data = []){
+        if (!empty($data)) {
+            $this->hydrate($data);
+        }
     }
 
     //hydratation
@@ -26,50 +28,52 @@ class Patient{
     }
 
     //setters 
-    public function setId($id){
-        $id = (int) $id;
+    public function setid_user($id_user){
+        $id_user = (int) $id_user;
 
-        if($id >0){
-            $this->_id = $id;
+        if($id_user >0){
+            $this->_id_user = $id_user;
         }
     }
 
-    public function setNom($nom){
+    public function setnom_user($nom){
         if(is_string($nom))
             $this->_nom = $nom;
     }
 
-    public function setPrenom($prenom){
+    public function setprenom_user($prenom){
         if(is_string($prenom))
             $this->_prenom = $prenom;
     }
 
-    public function setSex($sex){
-        if(is_string($sex) and ($sex=='F' or $sex=='M'))
-            $this->_sex = $sex;
+    public function setSexe($sexe){
+        if(is_string($sexe) and ($sexe == 'F' or $sexe == 'M')){
+            $this->_sexe = $sexe;
+        }
     }
+    
 
-    public function setnumSecu($numSecu){
+    public function setnum_sec($numSecu){
         $numSecu = (int) $numSecu;
 
         if($numSecu >0){
-            $this->_numSecu = $numSecu;
+            $this->_num_sec = $numSecu;
         }
     }
 
-    public function setmedecinTraitant($medecinTraitant){
-        if(is_string($medecinTraitant))
-            $this->_medecinTraitant = $medecinTraitant;
+    public function setMedecinTraitant($MedecinTraitant){
+        if(is_string($MedecinTraitant))
+            $this->_MedecinTraitant = $MedecinTraitant;
     }
 
-    public function setdateNaissance($dateNaissance){
+    public function setdate_naissance($dateNaissance){
         $this->_dateNaissance = $dateNaissance;
     }
 
     //getters
 
-    public function id(){
-        return $this->_id;
+    public function id_user(){
+        return $this->_id_user;
     }
 
     public function nom(){
@@ -84,15 +88,15 @@ class Patient{
         return $this->_sexe;
     }
 
-    public function numSecu(){
-        return $this->_numSecu;
+    public function num_sec(){
+        return $this->_num_sec;
     }
 
-    public function medecinTraitant(){
-        return $this->_medecinTraitant;
+    public function MedecinTraitant(){
+        return $this->_MedecinTraitant;
     }
 
-    public function dateNaissance(){
+    public function date_naissance(){
         return $this->_dateNaissance;
     }
 

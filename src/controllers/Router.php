@@ -42,4 +42,7 @@ class Router
             require_once('src/views/viewError.php');
         }
     }
+
+
 }
+

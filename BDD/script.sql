@@ -101,7 +101,7 @@ CREATE TABLE hospitalisation (
     FOREIGN KEY (id_user) REFERENCES Patient(id_user)
 );
 
--- Création de la table Appartient (Belongs to)
+
 CREATE TABLE Appartient (
     id_user INT NOT NULL,
     id_groupe INT NOT NULL,
@@ -109,3 +109,10 @@ CREATE TABLE Appartient (
     FOREIGN KEY (id_user) REFERENCES Users(id_user),
     FOREIGN KEY (id_groupe) REFERENCES Groupe(id_groupe)
 );
+
+
+ALTER TABLE users
+ADD CONSTRAINT contrainte_unique UNIQUE (id_user);
+
+ALTER TABLE patients
+ADD CONSTRAINT contrainte_unique UNIQUE (num_sec);

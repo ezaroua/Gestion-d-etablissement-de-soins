@@ -7,9 +7,10 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="#home">Accueil</a>
+        <a href="#home">ACCUEIL</a>
         <a href="#nursing"></a>
-        <a href="#ViewCreationPatient.php">Patient</a>
+        <a href="#ViewCreationPatient.php">PATIENT</a>
+        <a href="">REJOIGNEZ NOUS</a>
         <!--TODO: Ajoutez d'autres liens de navigation-->
     </div>
 
@@ -18,7 +19,7 @@
     </div>
 
     <div class="search-container">
-        <form id="patientForm" method="post">
+        <form id="patientForm" method="post" action="index.php?action=search">
             <div class="row">
                 <div class="column">
                     <label for="nom">Nom</label>
@@ -33,8 +34,8 @@
                     <input type="text" id="dateNaissance" name="dateNaissance">
                 </div>
                 <div class="column">
-                    <label for="idNat">N° secrurité social</label>
-                    <input type="text" id="idNat" name="idNat">
+                    <label for="num_sec">N° secrurité social</label>
+                    <input type="text" id="num_sec" name="num_sec">
                 </div>
             </div>
 
@@ -51,14 +52,14 @@
                     </select>
                 </div>
                 <div class="column">
-                    <label for="patientId">service</label>
-                    <input type="text" id="patientId" name="patientId">
+                    <label for="service">service</label>
+                    <input type="text" id="service" name="service">
                 </div>
                 
             </div>
             
             <div class="center-buttons"> 
-                <button type="button">Chercher</button>
+                <button type="submit">Chercher</button>
                 <button type="button" id="clearButton">Vider</button>  
             </div>
         </form>
@@ -74,17 +75,29 @@
             <th>Medecin traitant</th>
             
         </tr>
+        <?php if (!empty($patients)): ?>
+            <?php foreach($patients as $patient): ?>  
+                <tr class='clickable-row' data-id="<?= $patient->id_user() ?>">
+                    <td><?= $patient->id_user() ?></td>
+                    <td><?= $patient->nom(). ' ' .$patient->prenom()?> </td>
+                    <td><?= $patient->date_naissance() ?></td>
+                    <td><?= $patient->sexe() ?></td>
+                    <td><?= $patient->num_sec() ?></td>
+                    <td><?= $patient->MedecinTraitant() ?></td>
+                </tr>
+            <?php endforeach; ?>
 
-        <?php foreach($patients as $patient): ?>
-            <tr>
-                <td><?= $patient->id_user() ?></td>
-                <td><?= $patient->nom(). ' ' .$patient->prenom()?> </td>
-                <td><?= $patient->date_naissance() ?></td>
-                <td><?= $patient->sexe() ?></td>
-                <td><?= $patient->num_sec() ?></td>
-                <td><?= $patient->MedecinTraitant() ?></td>
-            </tr>
-        <?php endforeach; ?>
+            
+
+            <?php if (empty($patients)): ?>
+                <tr>
+                    <td colspan="6">Aucun patient trouvé.</td>
+                </tr>
+            <?php endif; ?>
+
+            <!-- <?php echo '<pre>'; print_r($patients); echo '</pre>'; ?> -->
+
+        <?php endif; ?>   
 
     </table>
 

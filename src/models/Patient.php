@@ -11,8 +11,10 @@ class Patient{
     private $_dateNaissance;
 
     //constructeur
-    public function __construct(array $data){
-        $this->hydrate($data);
+    public function __construct(array $data = []){
+        if (!empty($data)) {
+            $this->hydrate($data);
+        }
     }
 
     //hydratation

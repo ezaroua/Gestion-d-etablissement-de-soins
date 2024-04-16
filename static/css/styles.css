@@ -32,7 +32,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     text-align: left;
     padding: 8px;
@@ -56,8 +57,8 @@ tr:nth-child(even) {
     justify-content: center;
     align-items: center;
     margin: 20px 400px 50px;
- 
-  
+
+
 }
 
 .form-group {
@@ -69,7 +70,8 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"], select {
+input[type="text"],
+select {
     width: 100%;
     padding: 8px;
     margin: 5px 0;
@@ -79,7 +81,8 @@ input[type="text"], select {
     box-sizing: border-box;
 }
 
-input[type="submit"], button {
+input[type="submit"],
+button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 15px;
@@ -89,19 +92,20 @@ input[type="submit"], button {
     text-align: center;
 }
 
-input[type="submit"]:hover, button:hover {
+input[type="submit"]:hover,
+button:hover {
     background-color: #45a049;
 }
 
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-left:  150px ;
+    margin-left: 150px;
 }
 
 .column {
     padding: 0 5px;
-    flex: 0 0 20%; 
+    flex: 0 0 20%;
 }
 
 .center-buttons {
@@ -113,4 +117,41 @@ input[type="submit"]:hover, button:hover {
 
 .center-buttons button {
     margin: 0 10px;
+}
+
+/* création patient */
+.create_patient {
+    margin: 20px 400px 50px;
+}
+
+fieldset {
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+fieldset input,
+fieldset select,
+fieldset textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+fieldset label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.bar {
+    width: 100%;
+    height: 4vh;
+    background-color: #003366;
+}
+
+.buttons-patient {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
 }

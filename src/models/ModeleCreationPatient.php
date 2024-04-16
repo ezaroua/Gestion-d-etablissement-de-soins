@@ -29,7 +29,7 @@ if (isset($_POST['creer'])) {
     $personne_urgence = htmlspecialchars($_POST['personne_urgence']);
 
     //attention à login qui a un comportement bizzare
-    $stmt = $pdo->prepare("INSERT INTO users (Nom_user, prenom_user, sexe, adresse_mail, login_user, mor_de_passe_hash) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $_bdd->prepare("INSERT INTO users (Nom_user, prenom_user, sexe, adresse_mail, login, mot_de_passe_hash) VALUES (?, ?, ?, ?, ?, ?)");
 
     $stmt->bindParam(1, $nom);
     $stmt->bindParam(2, $prenom);
@@ -40,10 +40,10 @@ if (isset($_POST['creer'])) {
 
     try {
         $stmt->execute();
-        $dernier_id = $pdo->lastInsertId();
+        $dernier_id = $_bdd->lastInsertId();
         echo "Enregistrement effectué avec succès. dernier id : " . $dernier_id;
 
-        $stmt2 = $pdo->prepare("INSERT INTO patients(id_user, date_naissance, profession, situation_familial, num_sec, adresse_postal, num_tel, type_assurance, contacte_cas_urgence, MedecinTraitant, langue_parler) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt2 = $_bdd->prepare("INSERT INTO patients(id_user, date_naissance, profession, situation_familial, num_sec, adresse_postal, num_tel, type_assurance, contacte_cas_urgence, MedecinTraitant, langue_parler) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
         $stmt2->bindParam(1, $dernier_id);
         $stmt2->bindParam(2, $date_naissance);
@@ -60,7 +60,7 @@ if (isset($_POST['creer'])) {
         try {
             $stmt2->execute();
             echo "<script>alert('Patient créé!');
-    document.location.href='homePageCom.php';
+    document.location.href='Router.php';
     </script>";
         } catch (PDOException $e) {
             echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();

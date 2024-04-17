@@ -9,7 +9,7 @@
     <div class="navbar">
         <a href="#home">ACCUEIL</a>
         <a href="#nursing"></a>
-        <a href="#ViewCreationPatient.php">PATIENT</a>
+        <a href="?url=CreationPatient">PATIENT</a>
         <a href="">REJOIGNEZ NOUS</a>
         <!--TODO: Ajoutez d'autres liens de navigation-->
     </div>

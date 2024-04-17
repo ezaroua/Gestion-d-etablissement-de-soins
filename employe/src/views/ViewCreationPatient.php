@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nouveau Patient</title>
-    <link rel="stylesheet" href="../../static/css/styles.css">
+    <link rel="stylesheet" href="static/css/styles.css">
 </head>
 
 <body class="patient">
@@ -12,7 +12,7 @@
         <h2>Nouveau Patient</h2>
         <!-- Formulaires et autres éléments d'interface utilisateur -->
     </div>
-    <form action="ControllerCreationPatient.php" method="post" name="formulaire_patient">
+    <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post" name="formulaire_patient">
         <div class="search-container create_patient">
             <fieldset>
                 <div>

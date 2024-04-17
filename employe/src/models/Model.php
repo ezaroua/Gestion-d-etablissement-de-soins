@@ -1,17 +1,20 @@
-<?php 
+<?php
 
-abstract class Model {
+abstract class Model
+{
     // Propriété statique pour stocker la connexion à la base de données
     private static $_bdd;
 
     // Méthode pour initialiser la connexion à la base de données
-    private static function setBdd() {
+    private static function setBdd()
+    {
         self::$_bdd = new PDO('mysql:host=localhost;dbname=db_administrative_patient;charset=utf8', 'root', '');
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
     // Méthode pour récupérer la connexion à la base de données
-    protected function getBdd() {
+    protected function getBdd()
+    {
         if (self::$_bdd == null) {
             // self->setBdd();
             self::setBdd(); // Appel de la méthode setBdd pour initialiser la connexion si elle n'existe pas
@@ -20,10 +23,11 @@ abstract class Model {
     }
 
     // Méthode pour récupérer toutes les données d'une table
-    protected function getAll($table, $obj) {
+    protected function getAll($table, $obj)
+    {
         $var = [];
         //$req = self::$_bdd->prepare('SELECT * FROM ' . $table . ' ORDER BY id_user DESC'); 
-        $req = $this->getBdd()->prepare('SELECT * FROM ' . $table . ' join users ON patients.id_user=users.id_user ORDER BY users.id_user asc'); 
+        $req = $this->getBdd()->prepare('SELECT * FROM ' . $table . ' join users ON patients.id_user=users.id_user ORDER BY users.id_user asc');
         $req->execute();
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $var[] = new $obj($data);
@@ -32,13 +36,14 @@ abstract class Model {
         $req->closeCursor(); // Fermeture du curseur
     }
 
-    public function getsearchPatients($table, $obj, $nom, $prenom, $dateNaissance, $num_sec, $patientId) {
+    public function getsearchPatients($table, $obj, $nom, $prenom, $dateNaissance, $num_sec, $patientId)
+    {
         $var = [];
         //$sql = 'SELECT * FROM '. $table .' JOIN users ON patients.id_user = users.id_user WHERE 1=1';
-        $sql = 'SELECT * FROM '. $table .' AS patients JOIN users AS users ON patients.id_user = users.id_user WHERE 1=1';
+        $sql = 'SELECT * FROM ' . $table . ' AS patients JOIN users AS users ON patients.id_user = users.id_user WHERE 1=1';
 
         $params = [];
-        
+
         if (!empty($nom)) {
             $sql .= " AND users.nom_user LIKE ?";
             $params[] = "%$nom%";
@@ -59,7 +64,7 @@ abstract class Model {
             $sql .= " AND patients.id_user = ?";
             $params[] = $patientId;
         }
-        
+
         $stmt = $this->getBdd()->prepare($sql);
         $stmt->execute($params);
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {

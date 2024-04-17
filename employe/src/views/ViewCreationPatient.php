@@ -12,7 +12,7 @@
         <h2>Nouveau Patient</h2>
         <!-- Formulaires et autres éléments d'interface utilisateur -->
     </div>
-    <form action="" method="post" name="formulaire_patient">
+    <form action="ControllerCreationPatient.php" method="post" name="formulaire_patient">
         <div class="search-container create_patient">
             <fieldset>
                 <div>

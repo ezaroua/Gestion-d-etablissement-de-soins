@@ -124,6 +124,12 @@ button:hover {
     margin: 20px 400px 50px;
 }
 
+.patient {
+    background-image: url(../image_back.webp);
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
 fieldset {
     border: 2px solid #ccc;
     padding: 10px;

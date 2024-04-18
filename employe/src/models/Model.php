@@ -1,45 +1,31 @@
 <?php
 
+require 'Database.php'; // Inclure le fichier de connexion à la base de données
+
 abstract class Model
 {
-    // Propriété statique pour stocker la connexion à la base de données
-    private static $_bdd;
-
-    // Méthode pour initialiser la connexion à la base de données
-    private static function setBdd()
-    {
-        self::$_bdd = new PDO('mysql:host=localhost;dbname=db_administrative_patient;charset=utf8', 'root', '');
-        self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-    }
-
     // Méthode pour récupérer la connexion à la base de données
     protected function getBdd()
     {
-        if (self::$_bdd == null) {
-            // self->setBdd();
-            self::setBdd(); // Appel de la méthode setBdd pour initialiser la connexion si elle n'existe pas
-        }
-        return self::$_bdd;
+        return Database::getBdd();
     }
 
     // Méthode pour récupérer toutes les données d'une table
     protected function getAll($table, $obj)
     {
         $var = [];
-        //$req = self::$_bdd->prepare('SELECT * FROM ' . $table . ' ORDER BY id_user DESC'); 
-        $req = $this->getBdd()->prepare('SELECT * FROM ' . $table . ' join users ON patients.id_user=users.id_user ORDER BY users.id_user asc');
+        $req = $this->getBdd()->prepare('SELECT * FROM ' . $table . ' JOIN users ON patients.id_user=users.id_user ORDER BY users.id_user ASC');
         $req->execute();
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $var[] = new $obj($data);
         }
-        return $var;
         $req->closeCursor(); // Fermeture du curseur
+        return $var;
     }
 
     public function getsearchPatients($table, $obj, $nom, $prenom, $dateNaissance, $num_sec, $patientId)
     {
         $var = [];
-        //$sql = 'SELECT * FROM '. $table .' JOIN users ON patients.id_user = users.id_user WHERE 1=1';
         $sql = 'SELECT * FROM ' . $table . ' AS patients JOIN users AS users ON patients.id_user = users.id_user WHERE 1=1';
 
         $params = [];
@@ -70,7 +56,8 @@ abstract class Model
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $var[] = new $obj($data);
         }
+        $stmt->closeCursor(); // Fermeture du curseur
         return $var;
-        $req->closeCursor(); // Fermeture du curseur
     }
 }
+?>

@@ -20,9 +20,8 @@ class ControllerCreationPatient
         // Logique pour initialiser la création du patient
         // Cela inclut généralement la préparation des données nécessaires pour la vue
         // et ensuite charger la vue.
-        require_once('src/models/ModeleCreationPatient.php');
-        require_once('src/views/ViewCreationPatient.php');
         if (isset($_POST['creer'])) {
+            $user = new ModeleCreationPatient();
             $nom = htmlspecialchars($_POST['nom']);
             $prenom = htmlspecialchars($_POST['prenom']);
             $email = htmlspecialchars($_POST['mail']);
@@ -34,6 +33,9 @@ class ControllerCreationPatient
             $profession = htmlspecialchars($_POST['profession']);
             $situation_familiale = htmlspecialchars($_POST['situation_familiale']);
             $adresse = htmlspecialchars($_POST['adresse_postale']);
+            $cp = htmlspecialchars($_POST['cp']);
+            $ville = htmlspecialchars($_POST['ville']);
+            $pays = htmlspecialchars($_POST['pays']);
             $tel = htmlspecialchars($_POST['numero_telephone']);
             $langue = htmlspecialchars($_POST['langue_parlee']);
 
@@ -44,9 +46,9 @@ class ControllerCreationPatient
 
             //quatrieme
             $personne_urgence = htmlspecialchars($_POST['personne_urgence']);
-
-            insererUser($nom, $prenom, $email, $sexe, $_bdd);
-            insererPatient($date_naissance, $profession, $situation_familiale, $adresse, $tel, $langue, $num_secu, $assurance, $medecin_traitant, $personne_urgence, $_bdd);
+            $user->insererUser($nom, $prenom, $email, $sexe);
+            $user->insererPatient($date_naissance, $profession, $situation_familiale, $adresse, $cp, $ville, $pays, $tel, $langue, $num_secu, $assurance, $medecin_traitant, $personne_urgence);
         }
+        require_once('src/views/ViewCreationPatient.php');
     }
 }

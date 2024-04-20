@@ -125,9 +125,10 @@ button:hover {
 }
 
 .patient {
-    background-image: url(../image_back.webp);
-    background-repeat: repeat-y;
+    background-image: url(../image/image_back.webp);
+    background-repeat: no-repeat;
     background-position: center;
+    height: 100%;
 }
 
 fieldset {
@@ -158,6 +159,14 @@ fieldset label {
 
 .buttons-patient {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin-bottom: 3%;
+}
+
+.partie {
+    display: none;
+}
+
+.visible {
+    display: block;
 }

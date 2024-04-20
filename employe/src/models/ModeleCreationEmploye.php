@@ -1,13 +1,13 @@
 <?php
 
 require 'Database.php'; // Inclure le fichier de connexion à la base de données
-class ModeleCreationPatient
+class ModeleCreationEmploye
 {
-
     protected function getBdd()
     {
         return Database::getBdd();
     }
+
     public function insererUser($nom, $prenom, $email, $sexe)
     {
         $mdp = "1234";
@@ -29,7 +29,7 @@ class ModeleCreationPatient
         }
     }
 
-    public function insererPatient($date_naissance, $profession, $situation_familiale, $adresse, $cp, $ville, $pays, $tel, $langue, $num_secu, $assurance, $medecin_traitant, $personne_urgence)
+    public function insererEmploye($date_embauche, $type_contrat, $date_debut, $date_fin)
     {
         try {
             $dernier_id = $this->getBdd()->lastInsertId();
@@ -37,22 +37,13 @@ class ModeleCreationPatient
             echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
         }
 
-        $stmt2 = $this->getBdd()->prepare("INSERT INTO patients(id_user, date_naissance, profession, situation_familial, num_sec, adresse_postal, CP, Ville, Pays, num_tel, type_assurance, contacte_cas_urgence, MedecinTraitant, langue_parler) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt2 = $this->getBdd()->prepare("INSERT INTO employes(id_user, date_embauche, type_contrat, date_debut_contrat, date_fin_contrat) VALUES (?, ?, ?, ?, ?)");
 
         $stmt2->bindParam(1, $dernier_id);
-        $stmt2->bindParam(2, $date_naissance);
-        $stmt2->bindParam(3, $profession);
-        $stmt2->bindParam(4, $situation_familiale);
-        $stmt2->bindParam(5, $num_secu);
-        $stmt2->bindParam(6, $adresse);
-        $stmt2->bindParam(7, $cp);
-        $stmt2->bindParam(8, $ville);
-        $stmt2->bindParam(9, $pays);
-        $stmt2->bindParam(10, $tel);
-        $stmt2->bindParam(11, $assurance);
-        $stmt2->bindParam(12, $personne_urgence);
-        $stmt2->bindParam(13, $medecin_traitant);
-        $stmt2->bindParam(14, $langue);
+        $stmt2->bindParam(2, $date_embauche);
+        $stmt2->bindParam(3, $type_contrat);
+        $stmt2->bindParam(4, $date_debut);
+        $stmt2->bindParam(5, $date_fin);
 
         try {
             $stmt2->execute();

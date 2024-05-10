@@ -1,5 +1,24 @@
-#!C:\Users\thoma\AppData\Local\Programs\Python\Python312\python.exe 
+import cheminPython
+
+import sys
 from pymongo import MongoClient
+
+# Récupérer les arguments passés par le script PHP
+arguments = sys.argv[1:]  # Ignorer le premier argument qui est le nom du script Python
+
+# Si vous avez besoin de deux arguments
+if len(arguments) != 5:
+    print("Erreur : Le script doit recevoir exactement deux arguments.")
+    sys.exit(1)
+
+# Assigner les arguments à des variables appropriées
+argument1 = arguments[0]
+argument2 = arguments[1]
+argument3 = arguments[2]
+argument4 = arguments[3]
+argument5 = arguments[4]
+
+Informations = {"nom": argument2, "prenom": argument3, "sexe": argument4, "mail":argument5}
 
 # Se connecter à MongoDB
 client = MongoClient('mongodb://localhost:27017/')
@@ -10,21 +29,9 @@ db = client['urgences']
 # Sélectionner une collection
 collection = db['patient']
 
-numero_securite_sociale = "111-45-6711"
-nom="Letoublon"
-prenom="Thomas"
-sexe="M"
-mail="toto@gmail.com"
-
 # Insérer le numéro de sécurité sociale dans un document
-collection.insert_one({"numero_securite_sociale": numero_securite_sociale})
-
-# Tableau clé-valeur
-Informations = {"nom": nom, "prenom": prenom, "sexe": sexe, "mail":mail}
-
-# Mettre à jour le document pour inclure le tableau clé-valeur
-collection.update_one({"numero_securite_sociale": numero_securite_sociale}, {"$set": {"Informations": Informations}}, upsert=True)
+collection.insert_one({"numero_securite_sociale": argument1, "Informations":Informations})
 
 # Rechercher des documents
-for document in collection.find():
-    print(document)
+#for document in collection.find():
+#    print(document)

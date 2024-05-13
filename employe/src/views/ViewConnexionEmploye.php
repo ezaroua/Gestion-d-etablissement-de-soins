@@ -31,7 +31,7 @@
               </div>
 
               <p class="login-card-description">Connexion à votre compte d'employé</p>
-              <form action="./../models/ModelConnexionEmploye.php" method="POST">
+              <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
                   <div class="form-group">
                     <label for="mail" class="sr-only">mail</label>
                     <input type="text" name="mail" id="mail" class="form-control" placeholder="mail">

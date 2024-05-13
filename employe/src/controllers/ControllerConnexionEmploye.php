@@ -1,11 +1,15 @@
 <?php
+
 class ControllerConnexionEmploye
 {
     private $_model;
+    private $_view;
 
-    public function __construct()
+    public function __construct($bdd)
     {
-        $this->_model = new ModelConnexionEmploye();
+        // Initialise le modèle avec une instance PDO
+        $this->_model = new ModelConnexionEmploye(Database::getBdd());
+        $this->handleRequest();
     }
 
     public function handleRequest()
@@ -27,13 +31,17 @@ class ControllerConnexionEmploye
         if ($connexion_result['success']) {
             $_SESSION['mail'] = $connexion_result['user']['adresse_mail'];
             $_SESSION['statut'] = $connexion_result['statut'];
-            header('Location: ./../views/ViewAccueil.php');
+            header('Location: ?url=Accueil');
             exit();
         } else {
             $error = $connexion_result['error'];
-            session_destroy();
+            // Vérifie si une session est active avant de la détruire
+            if (session_status() == PHP_SESSION_ACTIVE) {
+                session_destroy();
+            }
+    
             echo "<script language='Javascript'>alert('$error')</script>";
-            header('Refresh: 0.1; ./../views/ViewConnexionEmploye.php');
+            header("Refresh: 0.1; " . $_SERVER['REQUEST_URI']);
             exit();
         }
     }

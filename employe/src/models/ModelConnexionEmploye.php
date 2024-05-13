@@ -6,9 +6,6 @@ class ModelConnexionEmploye
         $result = array();
 
         try {
-            $bdd = new PDO('mysql:host=localhost;dbname=db_administrative_patient;', 'root', '');
-            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $bdd->exec("set character set utf8");
 
             $sql_user = "SELECT * FROM users WHERE adresse_mail = :adresse_mail";
             $req1 = $bdd->prepare($sql_user);

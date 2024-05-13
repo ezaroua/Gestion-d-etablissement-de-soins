@@ -14,7 +14,7 @@ class ModeleCreationPatient
 
         $mdp_user = password_hash($mdp, PASSWORD_DEFAULT);
 
-        $stmt = $this->getBdd()->prepare("INSERT INTO users (Nom_user, prenom_user, sexe, adresse_mail, mot_de_passe_hash) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $this->getBdd()->prepare("INSERT INTO users (Nom_user, prenom_user, sexe, adresse_mail, mot_de_passe_hash) VALUES (?, ?, ?, ?, ?)");
 
         $stmt->bindParam(1, $nom);
         $stmt->bindParam(2, $prenom);
@@ -37,7 +37,7 @@ class ModeleCreationPatient
             echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
         }
 
-        $stmt2 = $this->getBdd()->prepare("INSERT INTO patients(id_user, date_naissance, profession, situation_familial, num_sec, adresse_postal, CP, Ville, Pays, num_tel, type_assurance, contacte_cas_urgence, MedecinTraitant, langue_parler) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt2 = $this->getBdd()->prepare("INSERT INTO patients(id_user, date_naissance, profession, situation_familial, num_sec, adresse_postal, CP, Ville, Pays, num_tel, type_assurance, contacte_cas_urgence, MedecinTraitant, langue_parler) VALUES (?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?)");
 
         $stmt2->bindParam(1, $dernier_id);
         $stmt2->bindParam(2, $date_naissance);
@@ -56,9 +56,9 @@ class ModeleCreationPatient
 
         try {
             $stmt2->execute();
-            echo "<script>alert('Patient créé!');
+            /*echo "<script>alert('Patient créé!');
         document.location.href='Router.php';
-        </script>";
+        </script>";*/
         } catch (PDOException $e) {
             echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
         }

@@ -1,8 +1,8 @@
 <?php
-
 class ControllerCreationEmploye
 {
     private $_view;
+    private $_service;
 
     public function __construct($url)
     {
@@ -20,20 +20,20 @@ class ControllerCreationEmploye
         // Cela inclut généralement la préparation des données nécessaires pour la vue
         // et ensuite charger la vue.
         if (isset($_POST['soumettre'])) {
+            $service = 1;
             $user = new ModeleCreationEmploye();
             $nom = htmlspecialchars($_POST['nom']);
             $prenom = htmlspecialchars($_POST['prenom']);
-            $login = $nom . $prenom;
             $email = htmlspecialchars($_POST['mail']);
             $sexe = htmlspecialchars($_POST['sexe']);
             $date_embauche = htmlspecialchars($_POST['date_embauche']);
             $contrat = htmlspecialchars($_POST['contrat']);
-            $date_debut = htmlspecialchars($_POST('date_debut'));
-            $date_fin = htmlspecialchars($_POST('date_fin'));
-            $service = htmlspecialchars($_POST['service']);
+            $date_debut = htmlspecialchars($_POST['date_debut']);
+            $date_fin = isset($_POST['date_fin']) ? htmlspecialchars($_POST['date_fin']) : null;
+            $poste = htmlspecialchars($_POST['poste']);
 
             $user->insererUser($nom, $prenom, $email, $sexe);
-            $user->insererEmploye($date_embauche, $contrat, $date_debut, $date_fin);
+            $user->insererEmploye($poste, $date_embauche, $contrat, $date_debut, $date_fin, $service);
         }
         require_once('src/views/ViewCreationEmploye.php');
     }

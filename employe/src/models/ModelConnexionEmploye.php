@@ -13,13 +13,13 @@ if (isset($_POST['Envoyer'])) {
     }
 
     // Récupération des données du formulaire
-    $login = htmlspecialchars($_POST['login']); // Pour éviter les injections XSS
+    $mail = htmlspecialchars($_POST['mail']); // Pour éviter les injections XSS
     $mdp = htmlspecialchars($_POST['password']);
 
     // Requête de connexion : contrôle du login et récupération du mdp hash
-    $sql_user = "SELECT * FROM users WHERE login = :login";
+    $sql_user = "SELECT * FROM users WHERE adresse_mail = :adresse_mail";
     $req1 = $bdd->prepare($sql_user);
-    $req1->bindParam(':login', $login);
+    $req1->bindParam(':adresse_mail', $mail);
     $req1->execute();
 
     // Si la recherche dans la table users trouve un résultat
@@ -27,16 +27,16 @@ if (isset($_POST['Envoyer'])) {
         $ValReq1 = $req1->fetch();
 
         // Vérification du login
-        if ($ValReq1['login'] == $login && password_verify($mdp, $ValReq1['mot_de_passe_hash'])) {   #
+        if ($ValReq1['adresse_mail'] == $mail && password_verify($mdp, $ValReq1['mot_de_passe_hash'])) {   #
             // Ouverture de session
-            $_SESSION['login'] = intval($ValReq1['login']);
+            $_SESSION['mail'] = intval($ValReq1['adresse_mail']);
 
             // Requête pour rechercher dans la table employé
             $sql_employe = "SELECT e.* FROM employes e
                             JOIN users u ON e.id_user = u.id_user
-                            WHERE u.login = :login";
+                            WHERE u.adresse_mail = :adresse_mail";
             $req2 = $bdd->prepare($sql_employe);
-            $req2->bindParam(':login', $login);
+            $req2->bindParam(':adresse_mail', $mail);
             $req2->execute();
 
             // Si la recherche dans la table employé trouve un résultat

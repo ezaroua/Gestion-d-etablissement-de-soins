@@ -33,8 +33,8 @@
               <p class="login-card-description">Connexion à votre compte de patient</p>
               <form action="./../models/ModelConnexionPatient.php" method="POST">
                   <div class="form-group">
-                    <label for="login" class="sr-only">login</label>
-                    <input type="text" name="login" id="login" class="form-control" placeholder="login">
+                    <label for="mail" class="sr-only">mail</label>
+                    <input type="text" name="mail" id="mail" class="form-control" placeholder="mail">
                   </div>
                   <div class="form-group mb-4">
                     <label for="password" class="sr-only">Mot de passe</label>

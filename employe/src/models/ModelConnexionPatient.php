@@ -26,6 +26,8 @@ if (isset($_POST['Envoyer'])) {
     if ($req1->rowCount() > 0) {
         $ValReq1 = $req1->fetch();
 
+        echo ($mail);
+        echo ($mdp)
         // Vérification du login
         if ($ValReq1['adresse_mail'] == $mail && password_verify($mdp, $ValReq1['mot_de_passe_hash'])) {   #
             // Ouverture de session

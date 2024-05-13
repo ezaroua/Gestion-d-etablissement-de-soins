@@ -41,7 +41,6 @@ class ControllerConnexionEmploye
     private function showLoginForm()
     {
         // Afficher le formulaire de connexion
-        require_once "./../views/ViewConnexionEmploye.php";
+        require_once "src/views/ViewConnexionEmploye.php";
     }
 }
-?>

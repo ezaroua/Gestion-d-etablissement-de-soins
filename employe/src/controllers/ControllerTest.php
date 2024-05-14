@@ -16,7 +16,10 @@ class ControllerTest
         //if (isset($_POST['soumettre'])) {
         $creation = new ModeleInsertionPatientNoSQL();
         //$num_secu = htmlspecialchars($_POST['num_secu']);
-        $num_secu = "12345678942111";
+        //$service=htmlspecialchars($_POST['service']);
+        //si 1, on est service urgence
+        $service = 1;
+        $num_secu = "12345678922222";
 
         $result = $creation->recupererDonneePatient($num_secu);
         foreach ($result as $result) {
@@ -41,7 +44,7 @@ class ControllerTest
             $sexe = $result['sexe'];
             $mail = $result['adresse_mail'];
         }
-        $creation->creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_secu, $adresse, $cp, $ville, $pays, $tel, $type_assurance, $contacte_cas_urgence, $medecin_traitant, $langue, $id_user);
+        $creation->creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_secu, $adresse, $cp, $ville, $pays, $tel, $type_assurance, $contacte_cas_urgence, $medecin_traitant, $langue, $id_user, $service);
         //}
     }
 }

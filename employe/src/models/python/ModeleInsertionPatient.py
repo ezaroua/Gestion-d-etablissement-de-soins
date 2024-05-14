@@ -29,15 +29,20 @@ type_assurance = arguments[13]
 contacte_cas_urgence = arguments[14]
 medecin_traitant = arguments[15]
 langue = arguments[16]
-print(nom)
+id_user=arguments[17]
+service=arguments[18]
+print("service= ",service)
 
-Informations = {"nom": nom, "prenom": prenom, "sexe": sexe, "mail":mail, "date_naissance":date_naissance, "profession":profession, "situation_familial":situation_familial, "adresse":adresse_postal, "cp":cp, "ville":ville, "pays":pays, "telephone":num_tel, "type_assurance":type_assurance, "contacte_cas_urgence":contacte_cas_urgence, "medecin_traitant":medecin_traitant, "langue":langue}
+Informations = {"nom": nom, "prenom": prenom, "sexe": sexe, "mail":mail, "date_naissance":date_naissance, "profession":profession, "situation_familial":situation_familial, "adresse":adresse_postal, "cp":cp, "ville":ville, "pays":pays, "telephone":num_tel, "type_assurance":type_assurance, "contacte_cas_urgence":contacte_cas_urgence, "medecin_traitant":medecin_traitant, "langue":langue, "id_user":id_user}
 
 # Se connecter à MongoDB
 client = MongoClient('mongodb://localhost:27017/')
 
 # Sélectionner une base de données
-db = client['urgences']
+if service=="1":
+    db = client['urgences']
+else:
+    print("erreur")
 
 # Sélectionner une collection
 collection = db['patient']

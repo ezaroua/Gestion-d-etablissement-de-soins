@@ -40,12 +40,16 @@ class ModeleInsertionPatientNoSQL
         }
     }
 
-    public function creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_sec, $adresse_postal, $cp, $ville, $pays, $num_tel, $type_assurance, $contacte_cas_urgence, $medecin_traitant, $langue, $id_user)
+    public function creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_sec, $adresse_postal, $cp, $ville, $pays, $num_tel, $type_assurance, $contacte_cas_urgence, $medecin_traitant, $langue, $id_user, $service)
     {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
+
+        $args = array_map('escapeshellarg', func_get_args());
+        $command = "$this->chemin_exec_python $this->chemin_script_python " . implode(' ', $args) . " 2>&1";
         // Appel du script Python en utilisant exec
-        exec("$this->chemin_exec_python $this->chemin_script_python $nom $prenom $sexe $mail $date_naissance $profession $situation_familial $num_sec $adresse_postal $cp $ville $pays $num_tel $type_assurance $contacte_cas_urgence $medecin_traitant $langue $id_user", $output, $return);
+        exec($command, $output, $return);
+        //exec("$this->chemin_exec_python $this->chemin_script_python $nom $prenom $sexe $mail $date_naissance $profession $situation_familial $num_sec $adresse_postal $cp $ville $pays $num_tel $type_assurance $contacte_cas_urgence $medecin_traitant $langue $id_user $service", $output, $return);
 
         if ($return == 0) {
             echo "Insertion réussi";

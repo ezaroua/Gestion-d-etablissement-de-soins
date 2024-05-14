@@ -5,7 +5,7 @@ CREATE TABLE Users (
     prenom_user VARCHAR(255) NOT NULL,
     sexe VARCHAR(50) NOT NULL,
     adresse_mail VARCHAR(255) NOT NULL,
-    mot_de_passe_hash VARCHAR(50) NOT NULL
+    mot_de_passe_hash VARCHAR(255) NOT NULL
 );
 
 -- Création de la table Employe

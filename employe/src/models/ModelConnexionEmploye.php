@@ -23,7 +23,7 @@ class ModelConnexionEmploye
             if ($req1->rowCount() > 0) {
                 $ValReq1 = $req1->fetch();
 
-                if ($ValReq1['adresse_mail'] == $mail ) {   //&& password_verify($mdp, $ValReq1['mot_de_passe_hash'])
+                if ($ValReq1['adresse_mail'] == $mail && password_verify($mdp, $ValReq1['mot_de_passe_hash'])) {   //&& password_verify($mdp, $ValReq1['mot_de_passe_hash'])
                     $sql_employe = "SELECT e.* FROM employes e
                                     JOIN users u ON e.id_user = u.id_user
                                     WHERE u.adresse_mail = :adresse_mail";

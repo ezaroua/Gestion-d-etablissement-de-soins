@@ -29,7 +29,7 @@ class ControllerConnexionEmploye
         $connexion_result = $this->_model->connexionEmploye($mail, $password);
 
         if ($connexion_result['success']) {
-            $_SESSION['mail'] = $connexion_result['user']['adresse_mail'];
+            $_SESSION['mail'] = $mail;
             $_SESSION['statut'] = $connexion_result['statut'];
             header('Location: ?url=Accueil');
             exit();

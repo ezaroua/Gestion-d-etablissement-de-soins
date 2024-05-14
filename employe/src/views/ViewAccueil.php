@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Interface de Gestion des Patients</title>
     <link rel="stylesheet" href="static/css/styles.css">
 </head>
+
 <body>
     <div class="navbar">
         <a href="#home">ACCUEIL</a>
@@ -55,12 +57,12 @@
                     <label for="service">service</label>
                     <input type="text" id="service" name="service">
                 </div>
-                
+
             </div>
-            
-            <div class="center-buttons"> 
+
+            <div class="center-buttons">
                 <button type="submit">Chercher</button>
-                <button type="button" id="clearButton">Vider</button>  
+                <button type="button" id="clearButton">Vider</button>
             </div>
         </form>
     </div>
@@ -73,13 +75,13 @@
             <th>Sexe</th>
             <th>N° securité sociale</th>
             <th>Medecin traitant</th>
-            
+
         </tr>
-        <?php if (!empty($patients)): ?>
-            <?php foreach($patients as $patient): ?>  
+        <?php if (!empty($patients)) : ?>
+            <?php foreach ($patients as $patient) : ?>
                 <tr class='clickable-row' data-id="<?= $patient->id_user() ?>">
                     <td><?= $patient->id_user() ?></td>
-                    <td><?= $patient->nom(). ' ' .$patient->prenom()?> </td>
+                    <td><?= $patient->nom() . ' ' . $patient->prenom() ?> </td>
                     <td><?= $patient->date_naissance() ?></td>
                     <td><?= $patient->sexe() ?></td>
                     <td><?= $patient->num_sec() ?></td>
@@ -87,21 +89,24 @@
                 </tr>
             <?php endforeach; ?>
 
-            
 
-            <?php if (empty($patients)): ?>
+
+            <?php if (empty($patients)) : ?>
                 <tr>
                     <td colspan="6">Aucun patient trouvé.</td>
                 </tr>
             <?php endif; ?>
 
-            <!-- <?php echo '<pre>'; print_r($patients); echo '</pre>'; ?> -->
+            <!-- <?php echo '<pre>';
+                    print_r($patients);
+                    echo '</pre>'; ?> -->
 
-        <?php endif; ?>   
+        <?php endif; ?>
 
     </table>
 
     <script src="static/js/script.js"></script>
 
 </body>
+
 </html>

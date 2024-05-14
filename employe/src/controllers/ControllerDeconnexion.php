@@ -1,19 +1,14 @@
 <?php 
 
 class UserController {
-    public function logout() {
+    public function logout() { //A FAIRE FONCTIONNER
         session_start();
-        session_unset();
         session_destroy();
-        header('Location: ViewConnexionEmploye.php'); // Redirige vers la page de connexion
-        exit();
-        session_start();
+        header('Location: src/controllers/ControllerConnexionEmploye.php'); // Redirige vers la page de connexion
 
-    /*if ($_SESSION == null) {
-        header("location: ../../template/connexion.php");
-    }*/
-    $id_user = $_SESSION["id_user"];
-    $id_job = $_SESSION["roles_user"];
+        echo "<script language='Javascript'>alert('$error')</script>";
+        header("Refresh: 0.1; " . $_SERVER['REQUEST_URI']);
+        exit();
         }
 }
 

@@ -2,10 +2,9 @@
 
 session_start();
 // SECURITE DE CONNEXION A LA PAGE
-if (!isset ($_SESSION['mail'])) 
+if (isset ($_SESSION['mail'])) 
 {
-    //header('Refresh: 0.1 ; src/controllers/ControllerConnexion.php');
-    echo("walo");
+    header('Location: ?url=ConnexionEmploye');
 }
 
 class ControllerAccueil

@@ -29,7 +29,7 @@ class ControllerConnexionEmploye
         $connexion_result = $this->_model->connexionEmploye($mail, $password);
 
         if ($connexion_result['success']) {
-            $_SESSION['mail'] = $connexion_result['user']['adresse_mail'];
+            $_SESSION['mail'] = $mail;
             $_SESSION['statut'] = $connexion_result['statut'];
             header('Location: ?url=Accueil');
             exit();
@@ -39,7 +39,7 @@ class ControllerConnexionEmploye
             if (session_status() == PHP_SESSION_ACTIVE) {
                 session_destroy();
             }
-    
+
             echo "<script language='Javascript'>alert('$error')</script>";
             header("Refresh: 0.1; " . $_SERVER['REQUEST_URI']);
             exit();

@@ -9,7 +9,7 @@
 
 <body class="patient">
 
-<div class="navbar">
+    <div class="navbar">
         <a href="?url=Accueil">ACCUEIL</a>
         <a href="?url=CreationPatient">PATIENT</a>
         <a href="?url=GestionDemandes">DEMANDES</a>
@@ -21,7 +21,7 @@
                 <a href="#">Déconnexion</a>
             </div>
         </div>
-</div>
+    </div>
 
     <div class="main-header">
         <h2>Nouveau Patient</h2>
@@ -31,19 +31,19 @@
         <div class="search-container create_patient partie visible" id="partie1">
             <fieldset>
                 <div>
-                    <label for="prenom">Prénom :</label>
+                    <label for="prenom">Prénom* :</label>
                     <input type="text" id="prenom" name="prenom" required>
                 </div>
                 <div>
-                    <label for="nom">Nom :</label>
+                    <label for="nom">Nom* :</label>
                     <input type="text" id="nom" name="nom" required>
                 </div>
                 <div>
-                    <label for="mail">Email :</label>
+                    <label for="mail">Email* :</label>
                     <input type="email" id="mail" name="mail" required>
                 </div>
                 <div>
-                    <label for="sexe">Sexe :</label>
+                    <label for="sexe">Sexe* :</label>
                     <select id="sexe" name="sexe" required>
                         <option value="M">Masculin</option>
                         <option value="F">Féminin</option>
@@ -57,28 +57,28 @@
         <div class="search-container create_patient partie visible" id="partie2">
             <fieldset>
                 <div>
-                    <label for="date_naissance">Date de naissance :</label>
+                    <label for="date_naissance">Date de naissance* :</label>
                     <input type="date" id="date_naissance" name="date_naissance" required>
                 </div>
 
 
                 <div>
-                    <label for="adresse_postale">Adresse postale :</label>
+                    <label for="adresse_postale">Adresse postale* :</label>
                     <textarea id="adresse_postale" name="adresse_postale" rows="4" required></textarea>
                 </div>
 
                 <div>
-                    <label for="cp">Code postal :</label>
+                    <label for="cp">Code postal* :</label>
                     <input type="text" id="cp" name="cp" minlength="5" maxlength="5" required>
                 </div>
 
                 <div>
-                    <label for="ville">Ville :</label>
+                    <label for="ville">Ville* :</label>
                     <input type="text" id="ville" name="ville" required>
                 </div>
 
                 <div>
-                    <label for="pays">Pays :</label>
+                    <label for="pays">Pays* :</label>
                     <input type="text" id="pays" name="pays" required>
                 </div>
 
@@ -92,11 +92,25 @@
             <fieldset>
                 <div>
                     <label for="profession">Profession :</label>
-                    <input type="text" id="profession" name="profession" required>
+                    <select id="profession" name="profession" required>
+                        <option value="agriculteur">Agriculteur</option>
+                        <option value="artisan">Artisan</option>
+                        <option value="commercant">Commerçant</option>
+                        <option value="chef_entreprise">Chef d'entreprise</option>
+                        <option value="profession_liberale">Profession libérale</option>
+                        <option value="cadre">Cadre</option>
+                        <option value="profession_intermediaire">Profession Intermédiaire</option>
+                        <option value="employe">Employé</option>
+                        <option value="ouvrier">Ouvrier</option>
+                        <option value="retraite">Retraité</option>
+                        <option value="demandeur_emploi">Demandeur d'emploi</option>
+                        <option value="etudiant">Etudiant</option>
+                        <option value="autre">Autre</option>
+                    </select>
                 </div>
 
                 <div>
-                    <label for="situation_familiale">Situation familiale :</label>
+                    <label for="situation_familiale">Situation familiale* :</label>
                     <select id="situation_familiale" name="situation_familiale" required>
                         <option value="marié">Marié(e)</option>
                         <option value="célibataire">Célibataire</option>
@@ -106,12 +120,12 @@
                 </div>
 
                 <div>
-                    <label for="numero_telephone">Numéro de téléphone :</label>
+                    <label for="numero_telephone">Numéro de téléphone* :</label>
                     <input type="tel" id="numero_telephone" name="numero_telephone" pattern="[0-9]{10}" required>
                 </div>
 
                 <div>
-                    <label for="langue_parlee">Langue(s) parlée(s) :</label>
+                    <label for="langue_parlee">Langue(s) parlée(s)* :</label>
                     <input type="text" id="langue_parlee" name="langue_parlee" required>
                 </div>
                 <div class="buttons-patient">
@@ -123,12 +137,12 @@
         <div class="search-container create_patient partie visible" id="partie4">
             <fieldset>
                 <div>
-                    <label for="numero_secu">Numéro de sécurité sociale :</label>
-                    <input type="text" id="numero_secu" name="numero_secu" pattern="[0-9]{15}" required>
+                    <label for="numero_secu">Numéro de sécurité sociale* :</label>
+                    <input type="text" id="numero_secu" name="numero_secu" maxlength="15" required>
                 </div>
 
                 <div>
-                    <label for="type_assurance">Type d'assurance :</label>
+                    <label for="type_assurance">Type d'assurance* :</label>
                     <select id="type_assurance" name="type_assurance" required>
                         <option value="">Choisissez une option</option>
                         <option value="Assurance maladie">Assurance maladie</option>
@@ -138,7 +152,7 @@
                 </div>
 
                 <div>
-                    <label for="medecin_traitant">Médecin traitant :</label>
+                    <label for="medecin_traitant">Médecin traitant* :</label>
                     <input type="text" id="medecin_traitant" name="medecin_traitant" required>
                 </div>
                 <div class="buttons-patient">
@@ -149,8 +163,26 @@
         </div>
         <div class="search-container create_patient partie visible" id="partie5">
             <fieldset>
-                <label for="personne_urgence">Personne à contacter en cas d'urgence :</label>
-                <textarea id="personne_urgence" name="personne_urgence" rows="4" required></textarea>
+                <div>
+                    <label for="personne_urgence">Personne à contacter en cas d'urgence :</label>
+                    <input type="text" id="personne_urgence" name="personne_urgence">
+                </div>
+
+                <div>
+                    <label for="tel_cas_urgence">Téléphone de la personne :</label>
+                    <input type="text" id="tel_cas_urgence" name="tel_cas_urgence" maxlength="13">
+                </div>
+
+                <div>
+                    <label for="lien_urgence">Lien avec la personne</label>
+                    <select id="lien_urgence" name="lien_urgence">
+                        <option value=""></option>
+                        <option value="parent">Parent</option>
+                        <option value="famille">famille</option>
+                        <option value="ami">ami</option>
+                        <option value="conjoint">conjoint/conjointe</option>
+                    </select>
+                </div>
 
                 <div class="buttons-patient">
                     <button type="button" onclick="afficherPartie('partie4')">Retour</button>

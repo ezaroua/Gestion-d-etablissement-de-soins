@@ -13,16 +13,12 @@ class ControllerAccueil
             $this->patients();
     }
 
-
-    /*private function patients(){
-        $this->_patientManager = new PatientManager;
-        $patients = $this->_patientManager->getPatients();
-        require_once('src/views/viewAccueil.php');
-    }*/
-
     public function patients(){
         $this->_patientManager = new PatientManager;
         $patients = $this->_patientManager->searchPatients();
         require_once('src/views/viewAccueil.php');
     }
+    
 }
+
+?>

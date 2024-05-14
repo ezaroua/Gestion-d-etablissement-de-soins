@@ -81,21 +81,9 @@ select {
     box-sizing: border-box;
 }
 
-input[type="submit"],
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-}
 
-input[type="submit"]:hover,
-button:hover {
-    background-color: #45a049;
-}
+
+
 
 .row {
     display: flex;
@@ -108,24 +96,12 @@ button:hover {
     flex: 0 0 20%;
 }
 
-.center-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
 
-.center-buttons button {
-    margin: 0 10px;
-}
-
-/* création patient */
 .create_patient {
     margin: 20px 400px 50px;
 }
 
 .patient {
-    background-image: url(../image/image_back.webp);
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
@@ -169,4 +145,185 @@ fieldset label {
 
 .visible {
     display: block;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: #003366;
+    overflow: hidden;
+    color: white;
+    padding: 14px 20px;
+}
+
+.navbar a, .dropdown-content a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.dropdown {
+    float: right;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown .dropbtn img {
+    height: 32px;
+    vertical-align: middle;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 16px; /* Ensure readability */
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.main-header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #003366;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.search-container {
+    background-color: #f3f3f3;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 400px 50px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"], button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #45a049;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 150px;
+}
+
+.column {
+    padding: 0 5px;
+    flex: 0 0 20%;
+}
+
+
+
+
+.change-password-container {
+    background-color: #f3f3f3;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 50%; 
+    margin: 40px auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    width: 100%; 
+    margin-bottom: 15px; 
+}
+
+label {
+    display: block; 
+    margin-bottom: 8px;  
+}
+
+input[type="password"] {
+    width: 100%; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.center-buttons {
+    display: flex;
+    justify-content: center; /* centre les boutons horizontalement */
+    align-items: center; /* centre les boutons verticalement (optionnel) */
+    gap: 10px; /* espace entre les boutons */
+    width: 100%;
+    margin-top: 20px;
 }

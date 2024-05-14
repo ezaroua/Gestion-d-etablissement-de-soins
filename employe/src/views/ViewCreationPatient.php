@@ -8,6 +8,21 @@
 </head>
 
 <body class="patient">
+
+<div class="navbar">
+        <a href="?url=Accueil">ACCUEIL</a>
+        <a href="?url=CreationPatient">PATIENT</a>
+        <a href="?url=GestionDemandes">DEMANDES</a>
+        <div class="dropdown">
+            <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
+            <div class="dropdown-content">
+                <a href="#">Mon compte</a>
+                <a href="?url=ModificationPassword">Changer mon mot de passe</a>
+                <a href="#">Déconnexion</a>
+            </div>
+        </div>
+</div>
+
     <div class="main-header">
         <h2>Nouveau Patient</h2>
         <!-- Formulaires et autres éléments d'interface utilisateur -->

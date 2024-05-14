@@ -4,23 +4,14 @@
     <meta charset="UTF-8">
     <title>Interface de Gestion des Patients</title>
     <link rel="stylesheet" href="static/css/styles.css">
-    <style>
-        
-    </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="?url=Accueil">ACCUEIL</a>
+        <a href="#home">ACCUEIL</a>
+        <a href="#nursing"></a>
         <a href="?url=CreationPatient">PATIENT</a>
-        <a href="?url=GestionDemandes">DEMANDES</a>
-        <div class="dropdown">
-            <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
-            <div class="dropdown-content">
-                <a href="#">Mon compte</a>
-                <a href="?url=ModificationPassword">Changer mon mot de passe</a>
-                <a href="#">Déconnexion</a>
-            </div>
-        </div>
+        <a href="">REJOIGNEZ NOUS</a>
+        <!--TODO: Ajoutez d'autres liens de navigation-->
     </div>
 
     <div class="main-header">
@@ -43,10 +34,11 @@
                     <input type="text" id="dateNaissance" name="dateNaissance">
                 </div>
                 <div class="column">
-                    <label for="num_sec">N° sécurité sociale</label>
+                    <label for="num_sec">N° secrurité social</label>
                     <input type="text" id="num_sec" name="num_sec">
                 </div>
             </div>
+
             <div class="row">
                 <div class="column">
                     <label for="patientId">Patient ID</label>
@@ -55,7 +47,8 @@
                 <div class="column">
                     <label for="province">Province</label>
                     <select id="province" name="province">
-                    <option value="">Sélectionner...</option>
+                        <option value="">Sélectionner...</option>
+                        <!-- Options de la province ici -->
                     </select>
                 </div>
                 <div class="column">
@@ -67,7 +60,7 @@
             
             <div class="center-buttons"> 
                 <button type="submit">Chercher</button>
-                <button type="button" id="clearButton">Vider</button> 
+                <button type="button" id="clearButton">Vider</button>  
             </div>
         </form>
     </div>

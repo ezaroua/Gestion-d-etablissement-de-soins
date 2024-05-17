@@ -40,7 +40,7 @@ class ModeleInsertionPatientNoSQL
         }
     }
 
-    public function creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_sec, $adresse_postal, $cp, $ville, $pays, $num_tel, $type_assurance, $contacte_cas_urgence, $medecin_traitant, $langue, $id_user, $service)
+    public function creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_sec, $adresse_postal, $cp, $ville, $pays, $num_tel, $type_assurance, $contacte_cas_urgence, $telephone_cas_urgence, $lien_cas_urgence, $medecin_traitant, $langue, $id_user, $service)
     {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);

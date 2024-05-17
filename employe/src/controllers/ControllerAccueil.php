@@ -2,7 +2,7 @@
 
 session_start();
 // SECURITE DE CONNEXION A LA PAGE
-if (isset ($_SESSION['mail'])) 
+if (!isset ($_SESSION['mail'])) 
 {
     header('Location: ?url=ConnexionEmploye');
 }

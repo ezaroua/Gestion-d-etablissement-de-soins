@@ -20,7 +20,7 @@
             <div class="dropdown-content">
                 <a href="#">Mon compte</a>
                 <a href="?url=ModificationPassword">Changer mon mot de passe</a>
-                <a href="ControllerDeconnexion.php">Déconnexion</a>
+                <a href="?url=Deconnexion">Déconnexion</a>
             </div>
         </div>
     </div>

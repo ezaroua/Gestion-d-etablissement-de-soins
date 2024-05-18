@@ -37,6 +37,7 @@ class ModelConnexionEmploye
                         $result['nom'] = $ValReq2['Nom_user'];
                         $result['prenom'] = $ValReq2['prenom_user'];
                         $result['poste'] = $ValReq2['poste'];
+                        $result['id_user'] = $ValReq2['id_user'];
                     } else {
                         $result['success'] = false;
                         $result['error'] = "Trouvé dans la table USER mais pas dans la table EMPLOYE";

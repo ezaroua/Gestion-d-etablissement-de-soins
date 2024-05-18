@@ -34,6 +34,7 @@ class ControllerConnexionEmploye
             $_SESSION['prenom'] = $connexion_result['prenom'];
             $_SESSION['poste'] = $connexion_result['poste'];
             $_SESSION['statut'] = $connexion_result['statut'];
+            $_SESSION['id_user'] = $connexion_result['id_user'];
             header('Location: ?url=Accueil');
             exit();
         } else {

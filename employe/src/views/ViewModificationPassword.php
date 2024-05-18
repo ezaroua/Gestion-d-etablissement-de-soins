@@ -15,7 +15,7 @@
             <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
             <div class="dropdown-content">
                 <a href="#">Mon compte</a>
-                <a href="?url=ViewModificationPassword">Changer mon mot de passe</a>
+                <a href="?url=ModificationPassword">Changer mon mot de passe</a>
                 <a href="#">Déconnexion</a>
             </div>
         </div>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="change-password-container">
-        <form id="changePasswordForm" method="post" action="index.php?action=changePassword">
+        <form id="changePasswordForm" method="post" action="?url=ModificationPassword">
             <div class="form-group">
                 <label for="currentPassword">Mot de passe actuel</label>
                 <input type="password" id="currentPassword" name="currentPassword" required>

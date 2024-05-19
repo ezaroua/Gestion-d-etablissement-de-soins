@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class ControllerConnexionEmploye
 {
     private $_model;
@@ -28,9 +28,13 @@ class ControllerConnexionEmploye
 
         $connexion_result = $this->_model->connexionEmploye($mail, $password);
 
-        if ($connexion_result['success']) {
+        if ($connexion_result['success']) { //On instencie les variables de session
             $_SESSION['mail'] = $mail;
+            $_SESSION['nom'] = $connexion_result['nom'];
+            $_SESSION['prenom'] = $connexion_result['prenom'];
+            $_SESSION['poste'] = $connexion_result['poste'];
             $_SESSION['statut'] = $connexion_result['statut'];
+            $_SESSION['id_user'] = $connexion_result['id_user'];
             header('Location: ?url=Accueil');
             exit();
         } else {

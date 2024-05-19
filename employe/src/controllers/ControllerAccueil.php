@@ -1,4 +1,6 @@
 <?php
+session_start(); // Démarrer la session
+
 class ControllerAccueil
 {
 
@@ -13,12 +15,10 @@ class ControllerAccueil
             $this->patients();
     }
 
-    public function patients(){
+    public function patients()
+    {
         $this->_patientManager = new PatientManager;
         $patients = $this->_patientManager->searchPatients();
         require_once('src/views/viewAccueil.php');
     }
-    
 }
-
-?>

@@ -33,7 +33,9 @@ class ControllerTest
             $pays = $result['Pays'];
             $tel = $result['num_tel'];
             $type_assurance = $result['type_assurance'];
-            $contacte_cas_urgence = $result['contacte_cas_urgence'];
+            $contacte_cas_urgence = isset($result['contacte_cas_urgence']) ? $result['contacte_cas_urgence'] : '';
+            $telephone_cas_urgence = isset($result['telephone_cas_urgence']) ? $result['telephone_cas_urgence'] : '';
+            $lien_cas_urgence = isset($result['lien_cas_urgence']) ? $result['lien_cas_urgence'] : '';
             $medecin_traitant = $result['MedecinTraitant'];
             $langue = $result['langue_parler'];
         }
@@ -44,7 +46,7 @@ class ControllerTest
             $sexe = $result['sexe'];
             $mail = $result['adresse_mail'];
         }
-        $creation->creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_secu, $adresse, $cp, $ville, $pays, $tel, $type_assurance, $contacte_cas_urgence, $medecin_traitant, $langue, $id_user, $service);
+        $creation->creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_secu, $adresse, $cp, $ville, $pays, $tel, $type_assurance, $contacte_cas_urgence, $telephone_cas_urgence, $lien_cas_urgence, $medecin_traitant, $langue, $id_user, $service);
         //}
     }
 }

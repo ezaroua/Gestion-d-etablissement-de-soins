@@ -1,9 +1,6 @@
 <?php
-class ControllerAccueil
+class ControllerAccueilMedical
 {
-
-    private $_patientManager;
-    private $_view;
 
     public function __construct($url)
     {
@@ -15,8 +12,6 @@ class ControllerAccueil
 
     public function patients()
     {
-        $this->_patientManager = new PatientManager;
-        $patients = $this->_patientManager->searchPatients();
-        require_once('src/views/viewAccueil.php');
+        require_once('src/views/viewAccueilMedecin.php');
     }
 }

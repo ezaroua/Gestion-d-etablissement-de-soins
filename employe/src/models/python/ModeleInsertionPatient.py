@@ -27,13 +27,15 @@ pays = arguments[11]
 num_tel = arguments[12]
 type_assurance = arguments[13]
 contacte_cas_urgence = arguments[14]
-medecin_traitant = arguments[15]
-langue = arguments[16]
-id_user=arguments[17]
-service=arguments[18]
+tel_cas_urgence=arguments[15]
+lien_cas_urgence=arguments[16]
+medecin_traitant = arguments[17]
+langue = arguments[18]
+id_user=arguments[19]
+service=arguments[20]
 print("service= ",service)
 
-Informations = {"nom": nom, "prenom": prenom, "sexe": sexe, "mail":mail, "date_naissance":date_naissance, "profession":profession, "situation_familial":situation_familial, "adresse":adresse_postal, "cp":cp, "ville":ville, "pays":pays, "telephone":num_tel, "type_assurance":type_assurance, "contacte_cas_urgence":contacte_cas_urgence, "medecin_traitant":medecin_traitant, "langue":langue, "id_user":id_user}
+Informations = {"nom": nom, "prenom": prenom, "sexe": sexe, "mail":mail, "date_naissance":date_naissance, "profession":profession, "situation_familial":situation_familial, "adresse":adresse_postal, "cp":cp, "ville":ville, "pays":pays, "telephone":num_tel, "type_assurance":type_assurance, "contacte_cas_urgence":contacte_cas_urgence, "tel_cas_urgence":tel_cas_urgence, "lien_cas_urgence":lien_cas_urgence, "medecin_traitant":medecin_traitant, "langue":langue, "id_user":id_user}
 
 # Se connecter à MongoDB
 client = MongoClient('mongodb://localhost:27017/')

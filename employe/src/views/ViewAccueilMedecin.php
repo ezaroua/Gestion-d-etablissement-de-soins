@@ -24,11 +24,11 @@
     </div>
 
     <div class="main-header">
-        <h2>Bienvenue Ilias EZAROUALI</h2>
+        <h2>Bienvenue <?= $_SESSION['prenom'] ?> <?= $_SESSION['nom'] ?></h2>
     </div>
 
     <div class="search-container">
-        <form id="patientForm" method="post" action="index.php?action=search">
+        <form id="patientForm" method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
             <div class="row">
                 <div class="column">
                     <label for="nom">Nom</label>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="column">
                     <label for="dateNaissance">Date de naissance</label>
-                    <input type="text" id="dateNaissance" name="dateNaissance">
+                    <input type="date" id="dateNaissance" name="dateNaissance">
                 </div>
                 <div class="column">
                     <label for="num_sec">N° sécurité sociale</label>
@@ -48,13 +48,13 @@
                 </div>
             </div>
             <div class="center-buttons">
-                <button type="submit">Chercher</button>
-                <button type="button" onclick="window.location.href='https://www.example.com';">Réinitialiser</button>
+                <button type="submit" name="chercher">Chercher</button>
+                <button type="button" onclick="window.location.href='<?php echo $_SERVER['REQUEST_URI']; ?>';">Réinitialiser</button>
             </div>
         </form>
     </div>
 
-    <table>
+    <table class="tab_accueil">
         <tr>
             <th>ID Personne</th>
             <th>Patient</th>
@@ -65,22 +65,18 @@
 
         </tr>
         <tbody>
-            <tr>
-                <td>01</td>
-                <td>01</td>
-                <td>01</td>
-                <td>01</td>
-                <td>01</td>
-                <td>01</td>
-            </tr>
-            <tr>
-                <td>02</td>
-                <td>02</td>
-                <td>02</td>
-                <td>02</td>
-                <td>02</td>
-                <td>02</td>
-            </tr>
+            <?php
+            foreach ($tab_patient as $element) {
+                echo "<tr onclick=\"redirectTo('page1.html')\" class='tr_accueil'>
+                    <td>" . $element[3] . "</td>
+                    <td>" . $element[1] . " " . $element[2] . "</td>
+                    <td>" . $element[4] . "</td>
+                    <td>" . $element[5] . "</td>
+                    <td>" . $element[0] . "</td>
+                    <td>" . $element[6] . "</td>
+                </tr>";
+            }
+            ?>
         </tbody>
 
     </table>

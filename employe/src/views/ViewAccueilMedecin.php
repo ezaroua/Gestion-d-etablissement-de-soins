@@ -62,21 +62,29 @@
             <th>Sexe</th>
             <th>N° securité sociale</th>
             <th>Medecin traitant</th>
-
+            <th>Information Patient</th>
+            <th>Compte rendu</th>
         </tr>
         <tbody>
             <?php
             foreach ($tab_patient as $element) {
-                echo "<tr onclick=\"redirectTo('page1.html')\" class='tr_accueil'>
-                    <td>" . $element[3] . "</td>
-                    <td>" . $element[1] . " " . $element[2] . "</td>
-                    <td>" . $element[4] . "</td>
-                    <td>" . $element[5] . "</td>
-                    <td>" . $element[0] . "</td>
-                    <td>" . $element[6] . "</td>
+                echo "<tr class='tr_accueil'>
+                    <td>" . htmlspecialchars($element[3]) . "</td>
+                    <td>" . htmlspecialchars($element[1]) . " " . htmlspecialchars($element[2]) . "</td>
+                    <td>" . htmlspecialchars($element[4]) . "</td>
+                    <td>" . htmlspecialchars($element[5]) . "</td>
+                    <td>" . htmlspecialchars($element[0]) . "</td>
+                    <td>" . htmlspecialchars($element[6]) . "</td>
+                    <td class='bout_tab'>
+                        <button type='button' onclick='window.location.href=\"" . $_SERVER['REQUEST_URI'] . "&id_user=" . $element[3] . "\";'>Info Patient</button>
+                    </td>
+                    <td class='bout_tab'>
+                        <button type='button' onclick='window.location.href=\"" . $_SERVER['REQUEST_URI'] . "\";'>Compte Rendu</button>
+                    </td>
                 </tr>";
             }
             ?>
+
         </tbody>
 
     </table>

@@ -1,9 +1,9 @@
 <?php
 
 require 'Database.php'; // Inclure le fichier de connexion à la base de données
-class ModeleRecupererPatientNoSQL
+class ModeleRecupererUnPatientNoSQL
 {
-    private $chemin_script_python = "src/models/python/ModeleRecupererPatient.py";
+    private $chemin_script_python = "src/models/python/ModeleRecupererUnPatient.py";
     private $chemin_exec_python = "C:\\Users\\thoma\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
     protected function getBdd()
     {
@@ -27,9 +27,8 @@ class ModeleRecupererPatientNoSQL
         return $elements;
     }
 
-    public function recupererPatientsNoSQL($nom, $prenom, $date_naissance, $num_sec, $service)
+    public function recupererUnPatientNoSQL($service, $id_user)
     {
-        $tab_patient = array();
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
 
@@ -39,12 +38,16 @@ class ModeleRecupererPatientNoSQL
         putenv('PYTHONIOENCODING=utf-8');
         exec($command, $output, $return);
 
+        if ($return !== 0 || empty($output)) {
+            header("Location: index.php?url=AccueilMedical"); // Remplacez /path/to/error/page par le chemin réel de la page d'erreur
+            exit();
+        }
+
         // Parcourir chaque élément du tableau
         foreach ($output as $element) {
             $element = $this->transformerEnTableau($element);
-            array_push($tab_patient, $element);
         }
 
-        return $tab_patient;
+        return $element;
     }
 }

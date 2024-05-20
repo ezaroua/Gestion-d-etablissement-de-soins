@@ -14,8 +14,13 @@ class ControllerAccueilMedical
         }
         if (isset($url) && is_array($url) && count($url) > 1)
             throw new Exception('Page introuvable');
-        else
-            $this->patients();
+        else {
+            if (isset($_GET['id_user'])) {
+                $this->patient();
+            } else {
+                $this->patients();
+            }
+        }
     }
 
     public function patients()
@@ -35,7 +40,16 @@ class ControllerAccueilMedical
             $date_naissance = isset($_POST['dateNaissance']) ? htmlspecialchars($_POST['dateNaissance']) : "";
             $num_sec = isset($_POST['num_sec']) ? htmlspecialchars($_POST['num_sec']) : "";
         }
-        $tab_patient = $recuperation->recupererPatientNoSQL($nom, $prenom, $date_naissance, $num_sec, $service);
+        $tab_patient = $recuperation->recupererPatientsNoSQL($nom, $prenom, $date_naissance, $num_sec, $service);
         require_once('src/views/viewAccueilMedecin.php');
+    }
+
+    public function patient()
+    {
+        $recuperation = new ModeleRecupererUnPatientNoSQL();
+        $id_user = htmlspecialchars($_GET['id_user']);
+        $service = 1;
+        $tab_patient = $recuperation->recupererUnPatientNoSQL($service, $id_user);
+        print_r($tab_patient);
     }
 }

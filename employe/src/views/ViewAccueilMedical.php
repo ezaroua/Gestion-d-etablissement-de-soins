@@ -12,7 +12,7 @@
 
 <body>
     <div class="navbar">
-        <a href="?url=Accueil">ACCUEIL</a>
+        <a href="?url=AccueilMedical">ACCUEIL</a>
         <div class="dropdown">
             <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
             <div class="dropdown-content">
@@ -66,22 +66,22 @@
             <th>Compte rendu</th>
         </tr>
         <tbody>
-            <?php
+        <?php
             foreach ($tab_patient as $element) {
-                echo "<tr class='tr_accueil'>
-                    <td>" . htmlspecialchars($element[3]) . "</td>
-                    <td>" . htmlspecialchars($element[1]) . " " . htmlspecialchars($element[2]) . "</td>
-                    <td>" . htmlspecialchars($element[4]) . "</td>
-                    <td>" . htmlspecialchars($element[5]) . "</td>
-                    <td>" . htmlspecialchars($element[0]) . "</td>
-                    <td>" . htmlspecialchars($element[6]) . "</td>
-                    <td class='bout_tab'>
-                        <button type='button' onclick='window.location.href=\"" . $_SERVER['REQUEST_URI'] . "&id_user=" . $element[3] . "\";'>Info Patient</button>
-                    </td>
-                    <td class='bout_tab'>
-                        <button type='button' onclick='window.location.href=\"" . $_SERVER['REQUEST_URI'] . "\";'>Compte Rendu</button>
-                    </td>
-                </tr>";
+                echo "<tr class='tr_accueil'>";
+                echo "<td>" . (isset($element[3]) ? htmlspecialchars($element[3]) : "") . "</td>";
+                echo "<td>" . (isset($element[1]) ? htmlspecialchars($element[1]) : "") . " " . (isset($element[2]) ? htmlspecialchars($element[2]) : "") . "</td>";
+                echo "<td>" . (isset($element[4]) ? htmlspecialchars($element[4]) : "") . "</td>";
+                echo "<td>" . (isset($element[5]) ? htmlspecialchars($element[5]) : "") . "</td>";
+                echo "<td>" . (isset($element[0]) ? htmlspecialchars($element[0]) : "") . "</td>";
+                echo "<td>" . (isset($element[6]) ? htmlspecialchars($element[6]) : "") . "</td>";
+                echo "<td class='bout_tab'>
+                    <button type='button' onclick='window.location.href=\"" . $_SERVER['REQUEST_URI'] . "&id_user=" . (isset($element[3]) ? $element[3] : "") . "\";'>Info Patient</button>
+                </td>";
+                echo "<td class='bout_tab'>
+                    <button type='button' onclick='window.location.href=\"?url=SuiviMedical&patientId=" .  (isset($element[1]) ? htmlspecialchars($element[1]) : "") . " " . (isset($element[2]) ? htmlspecialchars($element[2]) : "") . "\";'>Compte Rendu</button>
+                </td>";
+                echo "</tr>";
             }
             ?>
 

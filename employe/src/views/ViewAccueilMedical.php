@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Interface de Gestion des Patients</title>
-    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/styles_medical.css">
     <style>
 
     </style>
@@ -53,7 +53,11 @@
             </div>
         </form>
     </div>
-
+    <?php
+    if (count($tab_patient) < 1) {
+        echo "Aucun patient trouvé<br/>";
+    }
+    ?>
     <table class="tab_accueil">
         <tr>
             <th>ID Personne</th>
@@ -66,22 +70,24 @@
             <th>Compte rendu</th>
         </tr>
         <tbody>
-        <?php
-            foreach ($tab_patient as $element) {
-                echo "<tr class='tr_accueil'>";
-                echo "<td>" . (isset($element[3]) ? htmlspecialchars($element[3]) : "") . "</td>";
-                echo "<td>" . (isset($element[1]) ? htmlspecialchars($element[1]) : "") . " " . (isset($element[2]) ? htmlspecialchars($element[2]) : "") . "</td>";
-                echo "<td>" . (isset($element[4]) ? htmlspecialchars($element[4]) : "") . "</td>";
-                echo "<td>" . (isset($element[5]) ? htmlspecialchars($element[5]) : "") . "</td>";
-                echo "<td>" . (isset($element[0]) ? htmlspecialchars($element[0]) : "") . "</td>";
-                echo "<td>" . (isset($element[6]) ? htmlspecialchars($element[6]) : "") . "</td>";
-                echo "<td class='bout_tab'>
-                    <button type='button' onclick='window.location.href=\"" . $_SERVER['REQUEST_URI'] . "&id_user=" . (isset($element[3]) ? $element[3] : "") . "\";'>Info Patient</button>
-                </td>";
-                echo "<td class='bout_tab'>
-                    <button type='button' onclick='window.location.href=\"?url=SuiviMedical&patientId=" .  (isset($element[1]) ? htmlspecialchars($element[1]) : "") . " " . (isset($element[2]) ? htmlspecialchars($element[2]) : "") . "\";'>Compte Rendu</button>
-                </td>";
-                echo "</tr>";
+            <?php
+            if (count($tab_patient) > 0) {
+                foreach ($tab_patient as $element) {
+                    echo "<tr class='tr_accueil'>";
+                    echo "<td>" . (isset($element[3]) ? htmlspecialchars($element[3]) : "") . "</td>";
+                    echo "<td>" . (isset($element[1]) ? htmlspecialchars($element[1]) : "") . " " . (isset($element[2]) ? htmlspecialchars($element[2]) : "") . "</td>";
+                    echo "<td>" . (isset($element[4]) ? htmlspecialchars($element[4]) : "") . "</td>";
+                    echo "<td>" . (isset($element[5]) ? htmlspecialchars($element[5]) : "") . "</td>";
+                    echo "<td>" . (isset($element[0]) ? htmlspecialchars($element[0]) : "") . "</td>";
+                    echo "<td>" . (isset($element[6]) ? htmlspecialchars($element[6]) : "") . "</td>";
+                    echo "<td class='bout_tab'>
+                        <button type='button' onclick='window.location.href=\"" . $_SERVER['REQUEST_URI'] . "&id_user=" . (isset($element[3]) ? $element[3] : "") . "\";'>Info Patient</button>
+                    </td>";
+                    echo "<td class='bout_tab'>
+                        <button type='button' onclick='window.location.href=\"?url=SuiviMedical&patientId=" .  (isset($element[1]) ? htmlspecialchars($element[1]) : "") . " " . (isset($element[2]) ? htmlspecialchars($element[2]) : "") . "\";'>Compte Rendu</button>
+                    </td>";
+                    echo "</tr>";
+                }
             }
             ?>
 
@@ -89,7 +95,6 @@
 
     </table>
 
-    <script src="static/js/script.js"></script>
 
 </body>
 

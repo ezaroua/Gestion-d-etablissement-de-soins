@@ -24,30 +24,30 @@ class ControllerAccueilMedical
     }
 
     public function patients()
-{
-    $recuperation = new ModeleRecupererPatientNoSQL();
-    $prenom = "";
-    $nom = "";
-    $num_sec = "";
-    $date_naissance = "";
-    $service = 1;
+    {
+        $recuperation = new ModeleRecupererPatientNoSQL();
+        $prenom = "";
+        $nom = "";
+        $num_sec = "";
+        $date_naissance = "";
+        $service = 1;
 
-    if (isset($_POST['chercher'])) {
-        $prenom = isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : "";
-        $nom = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : "";
-        $date_naissance = isset($_POST['dateNaissance']) ? htmlspecialchars($_POST['dateNaissance']) : "";
-        $num_sec = isset($_POST['num_sec']) ? htmlspecialchars($_POST['num_sec']) : "";
+        if (isset($_POST['chercher'])) {
+            $prenom = isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : "";
+            $nom = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : "";
+            $date_naissance = isset($_POST['dateNaissance']) ? htmlspecialchars($_POST['dateNaissance']) : "";
+            $num_sec = isset($_POST['num_sec']) ? htmlspecialchars($_POST['num_sec']) : "";
+        }
+
+        $tab_patient = $recuperation->recupererPatientsNoSQL($nom, $prenom, $date_naissance, $num_sec, $service);
+
+
+        //echo "<pre>";
+        //print_r($tab_patient);
+        //echo "</pre>";
+
+        require_once('src/views/viewAccueilMedical.php');
     }
-
-    $tab_patient = $recuperation->recupererPatientsNoSQL($nom, $prenom, $date_naissance, $num_sec, $service);
-
-    
-    //echo "<pre>";
-    //print_r($tab_patient);
-    //echo "</pre>";
-    
-    require_once('src/views/viewAccueilMedical.php');
-}
 
 
     public function patient()
@@ -56,6 +56,6 @@ class ControllerAccueilMedical
         $id_user = htmlspecialchars($_GET['id_user']);
         $service = 1;
         $tab_patient = $recuperation->recupererUnPatientNoSQL($service, $id_user);
-        print_r($tab_patient);
+        require_once('src/views/ViewInfoPatientNoSQL.php');
     }
 }

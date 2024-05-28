@@ -34,10 +34,15 @@ class ModelConnexionEmploye
                     if ($req2->rowCount() > 0) {
                         $ValReq2 = $req2->fetch();
                         $result['success'] = true;
+
+                        $result['statut'] = "Employe";
+
                         $result['nom'] = $ValReq2['Nom_user'];
                         $result['prenom'] = $ValReq2['prenom_user'];
                         $result['poste'] = $ValReq2['poste'];
                         $result['id_user'] = $ValReq2['id_user'];
+                        $result['id_service'] = $ValReq2['id_service'];
+
                     } else {
                         $result['success'] = false;
                         $result['error'] = "Trouvé dans la table USER mais pas dans la table EMPLOYE";

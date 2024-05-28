@@ -1,0 +1,64 @@
+/* Styles pour la barre de navigation et le bouton de déconnexion */
+.navbar {
+    background-color: #003366;
+    overflow: hidden;
+    color: white;
+    padding: 14px 20px;
+}
+
+.navbar a,
+.dropbtn {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.logout {
+    float: right; /* Place le bouton de déconnexion à droite */
+}
+
+/* Styles pour le menu déroulant */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    border: none; /* Retirer les bordures du bouton par défaut */
+    outline: none; /* Retirer le contour lors du focus */
+    background-color: inherit; /* Hérite du fond de la barre de navigation */
+    font-family: inherit; /* Hérite de la police de la barre de navigation */
+    margin: 0; /* Retirer les marges par défaut */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Ajoutez le reste de vos styles CSS ici... */

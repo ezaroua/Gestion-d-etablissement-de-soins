@@ -60,7 +60,7 @@
                 </div>
                 <div>
                     <label for="date_fin">Date de fin de contrat :</label>
-                    <input type="date" id="date_fin" name="date_fin" required>
+                    <input type="date" id="date_fin" name="date_fin">
                 </div>
                 <div class="buttons-patient">
                     <button type="button" onclick="afficherPartie('partie1')">Retour</button>
@@ -71,10 +71,10 @@
         <div class="search-container create_patient partie visible" id="partie3">
             <fieldset>
                 <div>
-                    <label for="service">Service :</label>
-                    <select id="service" name="service" required>
-                        <option value="1">Urgence</option>
-                        <option value="2">Radiographie</option>
+                    <label for="poste">Poste :</label>
+                    <select id="poste" name="poste" required>
+                        <option value="employe">Employe</option>
+                        <option value="Chef Service">Chef De Service</option>
                     </select>
                 </div>
                 <div class="buttons-patient">

@@ -20,7 +20,3 @@ function afficherPartie(id) {
     }
     document.getElementById(id).classList.add('visible');
 }
-
-function redirectTo(url) {
-    window.location.href = url;
-}

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class ControllerConnexionEmploye
 {
     private $_model;
@@ -28,11 +28,11 @@ class ControllerConnexionEmploye
 
         $connexion_result = $this->_model->connexionEmploye($mail, $password);
 
-<<<<<<< Updated upstream
+
         if ($connexion_result['success']) {
             $_SESSION['mail'] = $connexion_result['user']['adresse_mail'];
             $_SESSION['statut'] = $connexion_result['statut'];
-=======
+
         if ($connexion_result['success']) { //On instencie les variables de session
             $_SESSION['mail'] = $mail;
             $_SESSION['nom'] = $connexion_result['nom'];
@@ -40,7 +40,7 @@ class ControllerConnexionEmploye
             $_SESSION['poste'] = $connexion_result['poste'];
             $_SESSION['id_user'] = $connexion_result['id_user'];
             $_SESSION['id_service'] = $connexion_result['id_service'];
->>>>>>> Stashed changes
+
             header('Location: ?url=Accueil');
             exit();
         } else {
@@ -49,7 +49,7 @@ class ControllerConnexionEmploye
             if (session_status() == PHP_SESSION_ACTIVE) {
                 session_destroy();
             }
-    
+
             echo "<script language='Javascript'>alert('$error')</script>";
             header("Refresh: 0.1; " . $_SERVER['REQUEST_URI']);
             exit();
@@ -62,4 +62,3 @@ class ControllerConnexionEmploye
         require_once "src/views/ViewConnexionEmploye.php";
     }
 }
-?>

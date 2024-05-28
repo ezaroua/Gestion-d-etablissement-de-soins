@@ -22,8 +22,13 @@ class Router
 
                 $controller = ucfirst(strtolower($url[0]));
                 $controllerClass = "Controller" . $controller;
+
                 //$controllerFile = "controllers/".$controllerClass."php";
                 $controllerFile = "src/Controllers/" . $controllerClass . ".php";
+
+
+                //$controllerFile = "controllers/" . $controllerClass . "php";
+                $controllerFile = "src/Controllers/".$controllerClass.".php";
 
 
                 if (file_exists($controllerFile)) {
@@ -33,8 +38,8 @@ class Router
                     throw new Exception('Page introuvable');
                 }
             } else {
-                require_once('src/controllers/ControllerConnexionEmploye.php');
-                $this->_ctrl = new ControllerConnexionEmploye($url);
+                require_once('src/controllers/ControllerAccueil.php');
+                $this->_ctrl = new ControllerAccueil($url);
             }
 
             //Gestion des erreurs

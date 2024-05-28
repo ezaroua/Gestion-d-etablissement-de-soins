@@ -45,9 +45,14 @@ class ControllerCreationPatient
             $medecin_traitant = htmlspecialchars($_POST['medecin_traitant']);
 
             //quatrieme
-            $personne_urgence = htmlspecialchars($_POST['personne_urgence']);
-            $user->insererUser($nom, $prenom, $email, $sexe);
-            $user->insererPatient($date_naissance, $profession, $situation_familiale, $adresse, $cp, $ville, $pays, $tel, $langue, $num_secu, $assurance, $medecin_traitant, $personne_urgence);
+            $personne_urgence = !empty($_POST['personne_urgence']) ? htmlspecialchars($_POST['personne_urgence']) : null;
+            $tel_urgence = !empty($_POST['tel_cas_urgence']) ? htmlspecialchars($_POST['tel_cas_urgence']) : null;
+            $lien_urgence = !empty($_POST['lien_urgence']) ? htmlspecialchars($_POST['lien_urgence']) : null;
+            $verif = $user->verifierNumeroSecu($num_secu);
+            if ($verif) {
+                $user->insererUser($nom, $prenom, $email, $sexe);
+                $user->insererPatient($date_naissance, $profession, $situation_familiale, $adresse, $cp, $ville, $pays, $tel, $langue, $num_secu, $assurance, $medecin_traitant, $personne_urgence, $tel_urgence, $lien_urgence);
+            }
         }
         require_once('src/views/ViewCreationPatient.php');
     }

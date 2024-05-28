@@ -22,7 +22,7 @@
       <div class="card login-card">
         <div class="row no-gutters">
           <div class="img col-md-5">
-            <img src="assets/images/logo_gsb.jpg" alt="login" class="login-card-img">
+            <img src="static/image/Logo_connexion.png" alt="login" class="login-card-img">
           </div>
           <div class="col-md-7">
             <div class="card-body">

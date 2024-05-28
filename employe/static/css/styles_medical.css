@@ -350,3 +350,27 @@ input[type="password"] {
 .bout_tab {
     text-align: center;
 }
+
+.info {
+    margin-bottom: 20px;
+}
+
+.info label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.info span {
+    display: block;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.countaineur {
+    margin: 2%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}

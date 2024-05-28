@@ -10,8 +10,20 @@
         <a href="#home">ACCUEIL</a>
         <a href="#nursing"></a>
         <a href="?url=CreationPatient">PATIENT</a>
+<<<<<<< Updated upstream
         <a href="">REJOIGNEZ NOUS</a>
         <!--TODO: Ajoutez d'autres liens de navigation-->
+=======
+        <a href="?url=GestionDemandes">DEMANDES</a>
+        <div class="dropdown">
+            <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
+            <div class="dropdown-content">
+                <a href="?url=MonCompte">Mon compte</a>
+                <a href="?url=ModificationPassword">Changer mon mot de passe</a>
+                <a href="?url=Deconnexion">Déconnexion</a>
+            </div>
+        </div>
+>>>>>>> Stashed changes
     </div>
 
     <div class="main-header">

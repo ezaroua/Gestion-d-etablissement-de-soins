@@ -30,8 +30,9 @@ class ControllerConnexionEmploye
 
 
         if ($connexion_result['success']) {
-            $_SESSION['mail'] = $connexion_result['user']['adresse_mail'];
+            $_SESSION['mail'] = $connexion_result['adresse_mail'];
             $_SESSION['statut'] = $connexion_result['statut'];
+        }
 
         if ($connexion_result['success']) { //On instencie les variables de session
             $_SESSION['mail'] = $mail;

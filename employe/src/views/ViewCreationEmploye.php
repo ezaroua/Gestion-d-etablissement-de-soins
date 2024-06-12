@@ -8,6 +8,22 @@
 </head>
 
 <body class="patient">
+    <div class="navbar">
+        <a href="?url=AccueilMedical">ACCUEIL</a>
+        <?php
+        if ($_SESSION['poste'] == "Chef Service") {
+            echo "<a href='?url=CreationEmploye'>AJOUT EMPLOYE</a>";
+        }
+        ?>
+        <div class="dropdown">
+            <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
+            <div class="dropdown-content">
+                <a href="#">Mon compte</a>
+                <a href="?url=ModificationPassword">Changer mon mot de passe</a>
+                <a href="#">Déconnexion</a>
+            </div>
+        </div>
+    </div>
     <div class="main-header">
         <h2>Création Employé</h2>
     </div>

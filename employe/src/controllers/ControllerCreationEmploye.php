@@ -1,4 +1,6 @@
 <?php
+session_start(); // Démarrer la session
+
 class ControllerCreationEmploye
 {
     private $_view;
@@ -8,6 +10,12 @@ class ControllerCreationEmploye
     {
         // Vérifiez si des paramètres supplémentaires sont fournis dans l'URL
         // et gérez-les ou lancez une exception si l'URL n'est pas valide
+        // Vérifier si les variables de session 'nom' et 'prenom' sont présentes
+        if (!isset($_SESSION['nom']) || !isset($_SESSION['prenom'])) {
+            // Rediriger vers une page de connexion ou afficher un message d'erreur
+            header('Location: index.php');
+            exit(); // Arrêter l'exécution du script
+        }
         if (isset($url) && is_array($url) && count($url) > 1)
             throw new Exception('Page introuvable');
         else
@@ -20,7 +28,7 @@ class ControllerCreationEmploye
         // Cela inclut généralement la préparation des données nécessaires pour la vue
         // et ensuite charger la vue.
         if (isset($_POST['soumettre'])) {
-            $service = 1;
+            $service = $_SESSION['id_service'];
             $user = new ModeleCreationEmploye();
             $nom = htmlspecialchars($_POST['nom']);
             $prenom = htmlspecialchars($_POST['prenom']);

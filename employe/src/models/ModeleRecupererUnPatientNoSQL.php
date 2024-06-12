@@ -4,8 +4,8 @@ require 'Database.php'; // Inclure le fichier de connexion à la base de donnée
 class ModeleRecupererUnPatientNoSQL
 {
     private $chemin_script_python = "src/models/python/ModeleRecupererUnPatient.py";
-    private $chemin_exec_python = "C:\Users\User\AppData\Local\Programs\Python\Python312\python.exe";
-    //private $chemin_exec_python = "C:\\Users\\thoma\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+    //private $chemin_exec_python = "C:\Users\User\AppData\Local\Programs\Python\Python312\python.exe";
+    private $chemin_exec_python = "C:\\Users\\thoma\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
     protected function getBdd()
     {
         return Database::getBdd();
@@ -40,7 +40,9 @@ class ModeleRecupererUnPatientNoSQL
         exec($command, $output, $return);
 
         if ($return !== 0 || empty($output)) {
-            header("Location: index.php?url=AccueilMedical"); // Remplacez /path/to/error/page par le chemin réel de la page d'erreur
+            //header("Location: index.php?url=AccueilMedical"); // Remplacez /path/to/error/page par le chemin réel de la page d'erreur
+            print_r($output);
+            echo $return;
             exit();
         }
 

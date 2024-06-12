@@ -18,8 +18,12 @@ service=arguments[4]
 # Se connecter à MongoDB
 client = MongoClient('mongodb://localhost:27017/', unicode_decode_error_handler='ignore')
 
-if service=="1":
+if service=="2":
     db = client['urgences']
+    # Sélectionner une collection
+    collection = db['patient']
+elif service=="3":
+    db = client['radiologie']
     # Sélectionner une collection
     collection = db['patient']
 else:

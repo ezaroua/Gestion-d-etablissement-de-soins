@@ -63,7 +63,7 @@ class ModeleCreationPatient
         }
 
         $stmt2 = $this->getBdd()->prepare("INSERT INTO patients(id_user, date_naissance, profession, situation_familial, num_sec, adresse_postal, CP, Ville, Pays, num_tel, type_assurance, contacte_cas_urgence, telephone_cas_urgence, lien_cas_urgence, MedecinTraitant, langue_parler) VALUES (?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?)");
-
+        echo "<br/> $num_secu";
         $stmt2->bindParam(1, $dernier_id);
         $stmt2->bindParam(2, $date_naissance);
         $stmt2->bindParam(3, $profession);

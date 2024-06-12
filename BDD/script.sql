@@ -67,3 +67,12 @@ ADD CONSTRAINT contrainte_unique UNIQUE (num_sec);
 ALTER TABLE employes
 ADD CONSTRAINT id_service
 FOREIGN KEY(id_service) REFERENCES Service(id_service)
+
+ALTER TABLE patients
+ADD  telephone_cas_urgence  varchar(13) null
+
+
+ALTER TABLE employes
+ADD CONSTRAINT id_service
+FOREIGN KEY(id_service) REFERENCES Service(id_service)
+

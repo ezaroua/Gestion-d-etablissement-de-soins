@@ -1,14 +1,16 @@
 import sys
+import base64
 from pymongo import MongoClient
 
 def main():
-    if len(sys.argv) != 5:
-        print("Usage: python ModelInsertionCompteRendu.py <id_user> <date> <motif> <compte_rendu>")
+    if len(sys.argv) != 6:
+        print("Usage: python ModelInsertionCompteRendu.py <id_user> <date> <motif> <compte_rendu> <nom_medecin>")
         sys.exit(1)
 
-    id_user, date_consultation, motif_consultation, compte_rendu = sys.argv[1:5]
+    id_user, date_consultation, motif_consultation, compte_rendu_encoded, nom_medecin = sys.argv[1:6]
+    compte_rendu = base64.b64decode(compte_rendu_encoded).decode('utf-8')  # Décoder la chaîne Base64
 
-    print(f"Received data - ID: {id_user}, Date: {date_consultation}, Motif: {motif_consultation}, Compte Rendu: {compte_rendu}")
+    print(f"Received data - ID: {id_user}, Date: {date_consultation}, Motif: {motif_consultation}, Compte Rendu: {compte_rendu}, Nom Medecin: {nom_medecin}")
 
     client = MongoClient('mongodb://localhost:27017/')
     db = client['urgences']
@@ -19,7 +21,8 @@ def main():
         {"$push": {"consultations": {
             "date": date_consultation,
             "motif": motif_consultation,
-            "compte_rendu": compte_rendu
+            "compte_rendu": compte_rendu,
+            "nom_medecin": nom_medecin
         }}}
     )
 

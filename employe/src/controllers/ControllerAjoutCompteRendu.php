@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('src/models/ModelAjoutCompteRendu.php');
 
 class ControllerAjoutCompteRendu
@@ -20,21 +20,24 @@ class ControllerAjoutCompteRendu
             $date = $_POST['date'];
             $motif = $_POST['motif'];
             $compteRendu = $_POST['compteRendu'];
+            $nom_medecin = $_SESSION['nom'] ." ". $_SESSION['prenom'];
+            echo ($nom_medecin);
 
-            error_log("Patient ID: $patientId, Date: $date, Motif: $motif, Compte Rendu: $compteRendu");
+            error_log("Patient ID: $patientId, Date: $date, Motif: $motif, Compte Rendu: $compteRendu, nom_medecin: $nom_medecin");
 
-            $this->saveCompteRendu($patientId, $date, $motif, $compteRendu);
+            $this->saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin );
         } else {
             $this->showForm();
         }
     }
 
-    public function saveCompteRendu($patientId, $date, $motif, $compteRendu)
+
+    public function saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin)
     {
         // Log to see when saveCompteRendu is called
-        error_log("saveCompteRendu called with patientId: $patientId, date: $date, motif: $motif");
+        error_log("saveCompteRendu called with patientId: $patientId, date: $date, motif: $motif, nom_medecin: $nom_medecin");
         
-        $result = $this->_model->creerDansNoSQL($patientId, $date, $motif, $compteRendu);
+        $result = $this->_model->creerDansNoSQL($patientId, $date, $motif, $compteRendu,$nom_medecin );
         // Log result of the insertion
         error_log("Result of insertion: $result");
 

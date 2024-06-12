@@ -1,5 +1,3 @@
-import cheminPython
-
 import sys
 from pymongo import MongoClient
 
@@ -25,4 +23,4 @@ consultations = collection.find(query)
 # Afficher les informations de chaque consultation
 for patient in consultations:
     for consultation in patient["consultations"]:
-        print(consultation["date"], consultation["motif"], consultation["compte_rendu"])
+        print(f"{consultation['date']}${consultation['motif']}${consultation['compte_rendu'] }")

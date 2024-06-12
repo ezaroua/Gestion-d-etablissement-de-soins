@@ -84,7 +84,7 @@
                         <button type='button' onclick='window.location.href=\"" . $_SERVER['REQUEST_URI'] . "&id_user=" . (isset($element[3]) ? $element[3] : "") . "\";'>Info Patient</button>
                     </td>";
                     echo "<td class='bout_tab'>
-                        <button type='button' onclick='window.location.href=\"?url=SuiviMedical&patientId=" .  (isset($element[1]) ? htmlspecialchars($element[1]) : "") . " " . (isset($element[2]) ? htmlspecialchars($element[2]) : "") . "\";'>Compte Rendu</button>
+                        <button type='button' onclick='window.location.href=\"?url=SuiviMedical&patientId=" .  (isset($element[3]) ? htmlspecialchars($element[3]) : "") . "\";'>Compte Rendu</button>
                     </td>";
                     echo "</tr>";
                 }

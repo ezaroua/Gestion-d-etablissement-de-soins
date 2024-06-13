@@ -12,6 +12,11 @@
     <div class="navbar">
         <a href="?url=Accueil">ACCUEIL</a>
         <a href="?url=CreationPatient">PATIENT</a>
+        <?php
+        if ($_SESSION['poste'] == "Chef Service") {
+            echo "<a href='?url=CreationEmploye'>AJOUT EMPLOYE</a>";
+        }
+        ?>
         <a href="?url=GestionDemandes">DEMANDES</a>
         <div class="dropdown">
             <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>

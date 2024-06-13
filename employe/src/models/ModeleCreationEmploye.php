@@ -49,9 +49,15 @@ class ModeleCreationEmploye
 
         try {
             $stmt2->execute();
-            /*echo "<script>alert('Employé créé!');
-        document.location.href='Router.php';
-        </script>";*/
+            if ($_SESSION['id_service'] == 1) {
+                echo "<script>alert('Employé ajouté!');
+        document.location.href='?url=Accueil';
+        </script>";
+            } else {
+                echo "<script>alert('Employé ajouté!');
+        document.location.href='?url=AccueilMedical';
+        </script>";
+            }
         } catch (PDOException $e) {
             echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
         }

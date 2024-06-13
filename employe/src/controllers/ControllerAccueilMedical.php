@@ -30,7 +30,7 @@ class ControllerAccueilMedical
         $nom = "";
         $num_sec = "";
         $date_naissance = "";
-        $service = 1;
+        $service = $_SESSION['id_service'];
 
         if (isset($_POST['chercher'])) {
             $prenom = isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : "";
@@ -54,7 +54,7 @@ class ControllerAccueilMedical
     {
         $recuperation = new ModeleRecupererUnPatientNoSQL();
         $id_user = htmlspecialchars($_GET['id_user']);
-        $service = 1;
+        $service = $_SESSION['id_service'];
         $tab_patient = $recuperation->recupererUnPatientNoSQL($service, $id_user);
         require_once('src/views/ViewInfoPatientNoSQL.php');
     }

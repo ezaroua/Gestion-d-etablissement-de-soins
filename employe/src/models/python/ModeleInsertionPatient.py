@@ -41,8 +41,10 @@ Informations = {"nom": nom, "prenom": prenom, "sexe": sexe, "mail":mail, "date_n
 client = MongoClient('mongodb://localhost:27017/')
 
 # Sélectionner une base de données
-if service=="1":
+if service=="2":
     db = client['urgences']
+elif service=="3":
+    db=client['radiologie']
 else:
     print("erreur")
 

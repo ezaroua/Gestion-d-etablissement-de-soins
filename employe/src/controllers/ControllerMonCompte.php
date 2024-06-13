@@ -16,10 +16,10 @@ class ControllerMonCompte {
         $this->model = new ModelMonCompte(Database::getBdd());
 
         // Afficher le formulaire
-        $this->afficherFormulaire();
+        $this->afficherFormulaireMonCompte();
     }
 
-    public function afficherFormulaire() {
+    public function afficherFormulaireMonCompte() {
         // Récupération des informations de l'utilisateur
         $userInfo = $this->model->getUserInfo($_SESSION['id_user']);
 

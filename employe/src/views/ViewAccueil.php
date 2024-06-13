@@ -25,9 +25,6 @@
             <div class="dropdown-content">
 
                 <a href="?url=MonCompte">Mon compte</a>
-
-                <a href="#">Mon compte</a>
-
                 <a href="?url=ModificationPassword">Changer mon mot de passe</a>
                 <a href="?url=Deconnexion">Déconnexion</a>
             </div>
@@ -92,7 +89,6 @@
             <th>Sexe</th>
             <th>N° securité sociale</th>
             <th>Medecin traitant</th>
-
         </tr>
         <?php if (!empty($patients)) : ?>
             <?php foreach ($patients as $patient) : ?>
@@ -105,24 +101,24 @@
                     <td><?= $patient->MedecinTraitant() ?></td>
                 </tr>
             <?php endforeach; ?>
-
-
-
-            <?php if (empty($patients)) : ?>
-                <tr>
-                    <td colspan="6">Aucun patient trouvé.</td>
-                </tr>
-            <?php endif; ?>
-
-            <!-- <?php echo '<pre>';
-                    print_r($patients);
-                    echo '</pre>'; ?> -->
-
+        <?php else : ?>
+            <tr>
+                <td colspan="6">Aucun patient trouvé.</td>
+            </tr>
         <?php endif; ?>
-
     </table>
 
-    <script src="static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var rows = document.querySelectorAll('.clickable-row');
+            rows.forEach(function(row) {
+                row.addEventListener('click', function() {
+                    var id = this.getAttribute('data-id');
+                    window.location.href = '?url=ModificationPatient&id=' + id;
+                });
+            });
+        });
+    </script>
 
 </body>
 

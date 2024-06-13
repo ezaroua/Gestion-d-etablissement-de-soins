@@ -9,7 +9,16 @@
 
 <body class="patient">
     <div class="navbar">
-        <a href="?url=AccueilMedical">ACCUEIL</a>
+
+        <?php 
+        if ($_SESSION['id_service'] <> 1 ) {
+                echo '<a href="?url=AccueilMedical">ACCUEIL</a>';
+            } else {
+                echo '<a href="?url=Accueil">ACCUEIL</a>';
+            }
+            ?>
+
+
         <?php
         if ($_SESSION['poste'] == "Chef Service") {
             echo "<a href='?url=CreationEmploye'>AJOUT EMPLOYE</a>";

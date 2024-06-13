@@ -10,17 +10,38 @@
 <body class="patient">
 
     <div class="navbar">
-        <a href="?url=Accueil">ACCUEIL</a>
-        <a href="?url=CreationPatient">PATIENT</a>
-        <a href="?url=GestionDemandes">DEMANDES</a>
-        <div class="dropdown">
-            <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
-            <div class="dropdown-content">
-                <a href="?url=MonCompte">Mon compte</a>
-                <a href="?url=ModificationPassword">Changer mon mot de passe</a>
-                <a href="?url=Deconnexion">Déconnexion</a>
-            </div>
+
+    <?php 
+    if ($_SESSION['id_service'] <> 1 ) {
+            echo '<a href="?url=AccueilMedical">ACCUEIL</a>';
+        } else {
+            echo '<a href="?url=Accueil">ACCUEIL</a>';
+        }
+        ?>
+
+
+    <?php
+    if ($_SESSION['id_service'] == 1 ) {
+        echo "<a href='?url=CreationPatient'>PATIENT</a>";
+    }
+    ?>
+
+
+
+    <?php
+    if ($_SESSION['poste'] == "Chef Service") {
+        echo "<a href='?url=CreationEmploye'>AJOUT EMPLOYE</a>";
+    }
+    ?>
+
+    <div class="dropdown">
+        <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
+        <div class="dropdown-content">
+            <a href="?url=MonCompte">Mon compte</a>
+            <a href="?url=ModificationPassword">Changer mon mot de passe</a>
+            <a href="?url=Deconnexion">Déconnexion</a>
         </div>
+    </div>
     </div>
 
 

@@ -3,10 +3,11 @@ class Router
 {
     private $_ctrl;
     private $_view;
+
     public function routeReq()
     {
         try {
-            //chargement automatique des classes
+            // Chargement automatique des classes
             spl_autoload_register(function ($class) {
                 require_once('src/models/' . $class . '.php');
             });
@@ -23,8 +24,7 @@ class Router
                 $controller = ucfirst(strtolower($url[0]));
                 $controllerClass = "Controller" . $controller;
                 //$controllerFile = "controllers/".$controllerClass."php";
-                $controllerFile = "src/Controllers/" . $controllerClass . ".php";
-
+                $controllerFile = "src/controllers/" . $controllerClass . ".php";
 
                 if (file_exists($controllerFile)) {
                     require_once($controllerFile);
@@ -37,10 +37,11 @@ class Router
                 $this->_ctrl = new ControllerConnexionEmploye($url);
             }
 
-            //Gestion des erreurs
+            // Gestion des erreurs
         } catch (Exception $e) {
             $errorMsg = $e->getMessage();
             require_once('src/views/viewError.php');
         }
     }
 }
+?>

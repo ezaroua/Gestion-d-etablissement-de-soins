@@ -1,5 +1,5 @@
 <?php
-
+session_start(); // Démarrer la session
 class ControllerCreationPatient
 {
     private $_view;

@@ -5,6 +5,7 @@ class ControllerConnexionEmploye
     private $_model;
     private $_view;
 
+    
     public function __construct($bdd)
     {
         // Initialise le modèle avec une instance PDO
@@ -42,8 +43,15 @@ class ControllerConnexionEmploye
             $_SESSION['id_user'] = $connexion_result['id_user'];
             $_SESSION['id_service'] = $connexion_result['id_service'];
 
-            header('Location: ?url=Accueil');
-            exit();
+
+            if ($_SESSION['id_service'] <> 1 ) {
+                header('Location: ?url=AccueilMedical');
+                exit();
+            } else {
+                header('Location: ?url=Accueil');
+                exit();
+            }
+
         } else {
             $error = $connexion_result['error'];
             // Vérifie si une session est active avant de la détruire

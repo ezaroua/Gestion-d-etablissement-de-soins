@@ -33,7 +33,7 @@
     </div>
 
     <div class="main-header">
-        <h2>Bienvenue Ilias EZAROUALI</h2>
+        <h2>Bienvenue <?= $_SESSION['prenom'] ?> <?= $_SESSION['nom'] ?></h2>
     </div>
 
     <div class="search-container">

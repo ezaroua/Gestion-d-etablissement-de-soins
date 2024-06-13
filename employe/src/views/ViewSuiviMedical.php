@@ -22,7 +22,7 @@ if (!isset($_SESSION['mail'])) {
         <div class="dropdown">
             <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
             <div class="dropdown-content">
-                <a href="#">Mon compte</a>
+                <a href="?url=MonCompte">Mon compte</a>
                 <a href="?url=ModificationPassword">Changer mon mot de passe</a>
                 <a href="?url=Deconnexion">Déconnexion</a>
             </div>

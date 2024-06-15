@@ -10,10 +10,10 @@ class ModeleInsertionPatientNoSQL
         return Database::getBdd();
     }
 
-    public function recupererDonneePatient($num_secu)
+    public function recupererDonneePatient($id_user)
     {
-        $stmt = $this->getBdd()->prepare("SELECT * FROM patients WHERE num_sec=?");
-        $stmt->bindParam(1, $num_secu);
+        $stmt = $this->getBdd()->prepare("SELECT * FROM patients WHERE id_user=?");
+        $stmt->bindParam(1, $id_user);
 
         try {
             $stmt->execute();

@@ -2,52 +2,79 @@
 session_start();
 require_once 'src/models/ModelModificationPatient.php'; // Assurez-vous d'inclure votre modèle
 
-class ControllerModificationPatient {
+class ControllerModificationPatient
+{
     private $model;
+    private $modelNOsql;
 
-    public function __construct($url) {
+    public function __construct($url)
+    {
         // Vérifiez si l'URL contient au moins un paramètre
         if (isset($_GET['id'])) {
             // Instancier le modèle
             $this->model = new ModelModificationPatient(Database::getBdd());
-        
+
             // Récupérer l'ID du patient depuis les paramètres de l'URL
             $patientId = $_GET['id'];
-            
+
             // Si le formulaire est soumis, vérifiez si le bouton "Modifier" est cliqué
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier'])) {
                 // Récupérez les données du formulaire
                 $patientData = [
-                    'prenom' => $_POST['prenom'],
-                    'nom' => $_POST['nom'],
-                    'mail' => $_POST['mail'],
-                    'sexe' => $_POST['sexe'],
-                    'date_naissance' => $_POST['date_naissance'],
-                    'adresse_postale' => $_POST['adresse_postale'],
-                    'cp' => $_POST['cp'],
-                    'ville' => $_POST['ville'],
-                    'pays' => $_POST['pays'],
-                    'profession' => $_POST['profession'],
-                    'situation_familiale' => $_POST['situation_familiale'],
-                    'numero_telephone' => $_POST['numero_telephone'],
-                    'langue_parlee' => $_POST['langue_parlee'],
-                    'numero_secu' => $_POST['numero_secu'],
-                    'type_assurance' => $_POST['type_assurance'],
-                    'medecin_traitant' => $_POST['medecin_traitant'],
-                    'personne_urgence' => $_POST['personne_urgence'],
-                    'tel_cas_urgence' => $_POST['tel_cas_urgence'],
-                    'lien_urgence' => $_POST['lien_urgence']
+                    'prenom' => htmlspecialchars($_POST['prenom']),
+                    'nom' => htmlspecialchars($_POST['nom']),
+                    'mail' => htmlspecialchars($_POST['mail']),
+                    'sexe' => htmlspecialchars($_POST['sexe']),
+                    'date_naissance' => htmlspecialchars($_POST['date_naissance']),
+                    'adresse_postale' => htmlspecialchars($_POST['adresse_postale']),
+                    'cp' => htmlspecialchars($_POST['cp']),
+                    'ville' => htmlspecialchars($_POST['ville']),
+                    'pays' => htmlspecialchars($_POST['pays']),
+                    'profession' => htmlspecialchars($_POST['profession']),
+                    'situation_familiale' => htmlspecialchars($_POST['situation_familiale']),
+                    'numero_telephone' => htmlspecialchars($_POST['numero_telephone']),
+                    'langue_parlee' => htmlspecialchars($_POST['langue_parlee']),
+                    'numero_secu' => htmlspecialchars($_POST['numero_secu']),
+                    'type_assurance' => htmlspecialchars($_POST['type_assurance']),
+                    'medecin_traitant' => htmlspecialchars($_POST['medecin_traitant']),
+                    'personne_urgence' => htmlspecialchars($_POST['personne_urgence']),
+                    'tel_cas_urgence' => htmlspecialchars($_POST['tel_cas_urgence']),
+                    'lien_urgence' => htmlspecialchars($_POST['lien_urgence'])
                 ];
 
                 // Appel à la méthode pour mettre à jour les informations du patient
-                $success = $this->model->updatePatientInfo($patientId, $patientData);
+                $this->model->updatePatientInfo($patientId, $patientData);
+                $this->model->modifierDansNoSQL($patientId, $patientData['prenom'], $patientData['nom'], $patientData['mail'], $patientData['sexe'], $patientData['date_naissance'], $patientData['adresse_postale'], $patientData['cp'], $patientData['ville'], $patientData['pays'], $patientData['profession'], $patientData['situation_familiale'], $patientData['numero_telephone'], $patientData['langue_parlee'], $patientData['numero_secu'], $patientData['type_assurance'], $patientData['medecin_traitant'], $patientData['personne_urgence'], $patientData['tel_cas_urgence'], $patientData['lien_urgence']);
+            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['inserer'])) {
+                $service = htmlspecialchars($_POST['service']);
+                $this->model->insererServicePatient($patientId, $service);
 
-                // Rediriger vers une page de confirmation ou afficher un message approprié
-                if ($success) {
-                    // Rediriger ou afficher un message de succès
-                } else {
-                    // Afficher un message d'erreur
+                $result = $this->model->recupererDonneePatient($patientId);
+                foreach ($result as $result) {
+                    $num_secu = $result['num_sec'];
+                    $date_naissance = $result['date_naissance'];
+                    $profession = $result['profession'];
+                    $situation_familial = $result['situation_familial'];
+                    $adresse = $result['adresse_postal'];
+                    $cp = $result['CP'];
+                    $ville = $result['Ville'];
+                    $pays = $result['Pays'];
+                    $tel = $result['num_tel'];
+                    $type_assurance = $result['type_assurance'];
+                    $contacte_cas_urgence = isset($result['contacte_cas_urgence']) ? $result['contacte_cas_urgence'] : '';
+                    $telephone_cas_urgence = isset($result['telephone_cas_urgence']) ? $result['telephone_cas_urgence'] : '';
+                    $lien_cas_urgence = isset($result['lien_cas_urgence']) ? $result['lien_cas_urgence'] : '';
+                    $medecin_traitant = $result['MedecinTraitant'];
+                    $langue = $result['langue_parler'];
                 }
+                $result2 = $this->model->recupererDonneeUser($patientId);
+                foreach ($result2 as $result) {
+                    $nom = $result['Nom_user'];
+                    $prenom = $result['prenom_user'];
+                    $sexe = $result['sexe'];
+                    $mail = $result['adresse_mail'];
+                }
+                $this->model->creerDansNoSQL($nom, $prenom, $sexe, $mail, $date_naissance, $profession, $situation_familial, $num_secu, $adresse, $cp, $ville, $pays, $tel, $type_assurance, $contacte_cas_urgence, $telephone_cas_urgence, $lien_cas_urgence, $medecin_traitant, $langue, $patientId, $service);
             } else {
                 // Appel à la méthode afficherFormulaire avec l'ID du patient
                 $this->afficherFormulairePatient($patientId);
@@ -57,12 +84,14 @@ class ControllerModificationPatient {
             throw new Exception('ID de patient non spécifié');
         }
     }
-    
 
-    public function afficherFormulairePatient($patientId) {
+
+    public function afficherFormulairePatient($patientId)
+    {
         // Récupération des informations du patient
         $patientInfo = $this->model->getPatientInfo($patientId);
-    
+        $patientService = $this->model->recupererServicePatient($patientId);
+
         // Vérifie si le patient existe
         if ($patientInfo) {
             // Appel à la vue avec les données du patient
@@ -72,6 +101,4 @@ class ControllerModificationPatient {
             throw new Exception('Patient introuvable');
         }
     }
-    
 }
-?>

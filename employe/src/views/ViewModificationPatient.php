@@ -25,7 +25,7 @@
 
 
     <div class="main-header">
-        <h2>Modification des informations du patient : <?php echo htmlspecialchars($patientInfo['prenom_user']." ".htmlspecialchars($patientInfo['Nom_user'])); ?></h2>
+        <h2>Modification des informations du patient : <?php echo htmlspecialchars($patientInfo['prenom_user'] . " " . htmlspecialchars($patientInfo['Nom_user'])); ?></h2>
     </div>
 
     <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post" name="formulaire_patient">
@@ -124,11 +124,11 @@
                 </div>
                 <div>
                     <label for="personne_urgence">Personne à contacter en cas d'urgence :</label>
-                    <input type="text" id="personne_urgence" name="personne_urgence" value="<?php echo htmlspecialchars($patientInfo['contacte_cas_urgence']); ?>">
+                    <input type="text" id="personne_urgence" name="personne_urgence" value="<?php echo htmlspecialchars($patientInfo['contacte_cas_urgence'] ?? ''); ?>">
                 </div>
                 <div>
                     <label for="tel_cas_urgence">Téléphone de la personne :</label>
-                    <input type="text" id="tel_cas_urgence" name="tel_cas_urgence" maxlength="13" value="<?php echo htmlspecialchars($patientInfo['num_tel']); ?>">
+                    <input type="text" id="tel_cas_urgence" name="tel_cas_urgence" maxlength="13" value="<?php echo htmlspecialchars($patientInfo['num_tel'] ?? ''); ?>">
                 </div>
                 <div>
                     <label for="lien_urgence">Lien avec la personne :</label>
@@ -146,6 +146,35 @@
             </fieldset>
         </div>
     </form>
+    <div class="search-container">
+        <h2>Patient présent dans les services : </h2>
+        <table>
+            <?php
+            if ($patientService) {
+                foreach ($patientService as $service) {
+                    echo "<tr>
+                        <td>" . htmlspecialchars($service['nom_service']) . "</td>
+                    </tr>";
+                }
+            } else {
+                echo "Aucun service associé à ce patient";
+            } ?>
+        </table>
+        <br />
+        <hr />
+        <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+            <div>
+                <label for="service">Service :</label>
+                <select id="service" name="service">
+                    <option value="2">Urgences</option>
+                    <option value="3">Radiologie</option>
+                </select>
+                <div class="buttons-patient">
+                    <input type="submit" value="Insérer" name="inserer">
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

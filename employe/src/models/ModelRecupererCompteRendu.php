@@ -16,18 +16,20 @@ class ModelRecupererCompteRendu
         }
 
         foreach ($output as $line) {
-            $parts = explode('$', $line);
-            if (count($parts) === 3) {
-                list($date, $motif, $compteRendu) = $parts;
+            $data = json_decode($line, true);
+            if ($data) {
                 $comptesRendus[] = [
-                    'date' => trim($date),
-                    'motif' => trim($motif),
-                    'compte_rendu' => trim($compteRendu)
+                    'date' => trim($data['date']),
+                    'motif' => trim($data['motif']),
+                    'compte_rendu' => trim($data['compte_rendu']),
+                    'nom_medecin' => trim($data['nom_medecin']),
+                    'consultation_id' => trim($data['consultation_id'])
                 ];
             } else {
                 error_log("Donnée incomplète ou mal formée: $line");
             }
         }
+        
 
         return $comptesRendus;
     }

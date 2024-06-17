@@ -1,23 +1,42 @@
 import sys
+import json
 from pymongo import MongoClient
 
-# Vérifier si l'argument est passé
-if len(sys.argv) < 2:
-    print("ID utilisateur non fourni")
+if len(sys.argv) < 3:
+    print(json.dumps({"error": "ID utilisateur et ID de consultation sont nécessaires"}))
     sys.exit(1)
 
-id_user = sys.argv[1]  # Récupérer l'ID utilisateur depuis les arguments
+id_user = sys.argv[1]
+consultation_id = int(sys.argv[2])
 
-client = MongoClient('mongodb://localhost:27017/', unicode_decode_error_handler='ignore')
+client = MongoClient('mongodb://localhost:27017/')
 db = client['urgences']
 collection = db['patient']
 
-# Créer un filtre pour récupérer les données basé sur l'ID utilisateur
-query = {"Informations.id_user": id_user}
+# Trouver la consultation spécifique
+query = {
+    "Informations.id_user": id_user,
+    "consultations.consultation_id": consultation_id
+}
+projection = {"consultations.$": 1, "Informations": 1, "numero_securite_sociale": 1} 
 
-consultations = collection.find(query)
+patient = collection.find_one(query, projection)
 
-# Imprimer les résultats pour que PHP puisse les lire
-for patient in consultations:
-    for consultation in patient.get("consultations", []):  # Assurer que 'consultations' existe
-        print(f"{consultation['date']}${consultation['motif']}${consultation['compte_rendu']}")
+if not patient:
+    print(json.dumps({"error": "Aucune consultation trouvée avec les IDs spécifiés"}))
+    sys.exit(1)
+
+# Retourner les détails de la consultation trouvée et les informations générales du patient
+consultation = patient['consultations'][0]
+informations = patient['Informations']
+numero_securite_sociale = patient['numero_securite_sociale'] 
+print(json.dumps({
+    "date": consultation['date'],
+    "motif": consultation['motif'],
+    "compte_rendu": consultation['compte_rendu'],
+    "nom_medecin": consultation['nom_medecin'],
+    "numero_securite_sociale": numero_securite_sociale,
+    "prenom": informations['prenom'],
+    "nom": informations['nom'],
+    "medecin_traitant": informations['medecin_traitant']
+}))

@@ -16,12 +16,13 @@ class ControllerAjoutCompteRendu
     {
         if (isset($_POST['submit'])) {
             error_log("Form submitted");
-            $patientId = $_POST['patientId'];
-            $date = $_POST['date'];
-            $motif = $_POST['motif'];
-            $compteRendu = $_POST['compteRendu'];
-            $nom_medecin = $_SESSION['nom'] ." ". $_SESSION['prenom'];
-            echo ($nom_medecin);
+
+            // Nettoyage des données reçues via POST
+            $patientId = htmlspecialchars($_POST['patientId'], ENT_QUOTES, 'UTF-8');
+            $date = htmlspecialchars($_POST['date'], ENT_QUOTES, 'UTF-8');
+            $motif = htmlspecialchars($_POST['motif'], ENT_QUOTES, 'UTF-8');
+            $compteRendu = htmlspecialchars($_POST['compteRendu'], ENT_QUOTES, 'UTF-8');
+            $nom_medecin = htmlspecialchars($_SESSION['nom'] . " " . $_SESSION['prenom'], ENT_QUOTES, 'UTF-8');
 
             error_log("Patient ID: $patientId, Date: $date, Motif: $motif, Compte Rendu: $compteRendu, nom_medecin: $nom_medecin");
 
@@ -31,17 +32,13 @@ class ControllerAjoutCompteRendu
         }
     }
 
-
     public function saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin)
     {
-        // Log to see when saveCompteRendu is called
-        error_log("saveCompteRendu called with patientId: $patientId, date: $date, motif: $motif, nom_medecin: $nom_medecin");
-        
-        $result = $this->_model->creerDansNoSQL($patientId, $date, $motif, $compteRendu,$nom_medecin );
-        // Log result of the insertion
+        // Logique de sauvegarde de compte rendu
+        $result = $this->_model->creerDansNoSQL($patientId, $date, $motif, $compteRendu, $nom_medecin);
         error_log("Result of insertion: $result");
 
-        // Redirect to the follow-up page
+        // Redirection
         header('Location: ?url=SuiviMedical&patientId=' . urlencode($patientId));
         exit();
     }
@@ -55,4 +52,3 @@ class ControllerAjoutCompteRendu
 
 // Exemple d'utilisation du contrôleur
 $controller = new ControllerAjoutCompteRendu();
-?>

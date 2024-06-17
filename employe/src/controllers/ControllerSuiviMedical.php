@@ -1,5 +1,5 @@
 <?php
-require_once('config.php'); // Assurez-vous que ce chemin est correct pour accéder à votre fichier de configuration
+require_once('config.php'); 
 require_once(BASE_PATH . '/src/models/ModelRecupererCompteRendu.php');
 
 class ControllerSuiviMedical {
@@ -11,10 +11,11 @@ class ControllerSuiviMedical {
     }
 
     public function main() {
-        $patientId = $_GET['patientId'] ?? 'default_id'; // Fallback if not set
+        $patientId = $_GET['patientId'] ?? 'default_id'; 
+        $consultation_id = $_GET['consultation_id'] ?? 'default_id'; 
         $comptesRendus = $this->model->recupererComptesRendus($patientId);
         require_once(BASE_PATH . '/src/views/ViewSuiviMedical.php');
     }
 }
 
-new ControllerSuiviMedical(); // This will initiate the controller
+new ControllerSuiviMedical(); 

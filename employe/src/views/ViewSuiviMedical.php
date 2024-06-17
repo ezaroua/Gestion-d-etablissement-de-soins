@@ -37,6 +37,8 @@ if (!isset($_SESSION['mail'])) {
             <tr>
                 <th>Date</th>
                 <th>Motif de consultation</th>
+                <th> Nom du médecin </th>
+                <th> Service </th>
                 <th>Compte Rendu</th>
             </tr>
             <?php 
@@ -45,7 +47,9 @@ if (!isset($_SESSION['mail'])) {
                     <tr>
                         <td><?= htmlspecialchars($compteRendu['date']) ?></td>
                         <td><?= htmlspecialchars($compteRendu['motif']) ?></td>
-                        <td><a href="?url=VoirCompteRendu&id=<?= htmlspecialchars($patientId) ?>">Voir Détails</a></td>
+                        <td><?= htmlspecialchars($compteRendu['nom_medecin']) ?> </th>
+                        <td> service </td>
+                        <td><a href="?url=VoirCompteRendu&consultationId=<?= htmlspecialchars($compteRendu['consultation_id']) ?>&patientId=<?= htmlspecialchars($patientId) ?>">Voir Détails</a></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else : ?>

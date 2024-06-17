@@ -147,7 +147,7 @@
             <div class="dropdown">
                 <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
                 <div class="dropdown-content">
-                    <a href="?url=MonCompte">Mon compte</a>
+                    <a href="#">Mon compte</a>
                     <a href="?url=ModificationPassword">Changer mon mot de passe</a>
                     <a href="?url=Deconnexion">Déconnexion</a>
                 </div>
@@ -185,8 +185,12 @@
         </div>
         <script>
             CKEDITOR.replace('compteRendu', {
-                height: 'calc(100vh - 300px)'
+                height: 400,
+                removeButtons: ''  // Assurez-vous que les boutons pour les styles sont bien disponibles
             });
         </script>
+        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+
     </body>
 </html>

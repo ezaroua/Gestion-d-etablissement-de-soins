@@ -13,7 +13,7 @@ class ModelAjoutCompteRendu
                    escapeshellarg($id_user) . ' ' .
                    escapeshellarg($date) . ' ' .
                    escapeshellarg($motif) . ' ' .
-                   escapeshellarg($compteRenduEncoded) . ' ' . // Utilisez la version encodée ici
+                   escapeshellarg($compteRenduEncoded) . ' ' .
                    escapeshellarg($nom_medecin);
         
         error_log("Executing command: $command");

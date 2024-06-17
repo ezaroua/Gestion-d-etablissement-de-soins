@@ -8,9 +8,11 @@ class Router
     {
         try {
             // Chargement automatique des classes
-            spl_autoload_register(function ($class) {
+             spl_autoload_register(function ($class) {
+            if (file_exists('src/models/' . $class . '.php')) {
                 require_once('src/models/' . $class . '.php');
-            });
+            }
+        });
 
             $url = '';
 

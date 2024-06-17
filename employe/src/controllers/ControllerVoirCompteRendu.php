@@ -1,33 +1,32 @@
 <?php
+session_start();
 require_once('src/models/ModelVoirCompteRendu.php');
 
-class ControllerSuiviMedical {
+class ControllerVoirCompteRendu {
     private $model;
 
-    public function __construct() {
+    public function __construct($url) {
         $this->model = new ModelVoirCompteRendu();
+        if (isset($url) && count($url) > 1) {
+            throw new Exception('Page introuvable');
+        } else {
+            $this->voirDetails();
+        }
     }
 
-    public function main() {
-        if (!isset($_GET['patientId'])) {
-            $this->redirectWithError("ID utilisateur non spécifié.");
+    public function voirDetails() {
+        if (!isset($_GET['consultationId']) || !isset($_GET['patientId'])) {
+            die('Consultation ID and Patient ID are required');
         }
-    
-        $patientId = htmlspecialchars($_GET['patientId']);
-        $comptesRendus = $this->model->recupererComptesRendus($patientId);
-    
-        error_log("Comptes Rendus fetched: " . print_r($comptesRendus, true));
-    
-        if (empty($comptesRendus)) {
-            $this->redirectWithError("Aucun compte rendu disponible pour cet utilisateur.");
-        }
-    
-        include('src/views/ViewSuiviMedical.php');
-    }
 
-    private function redirectWithError($message) {
-        $_SESSION['error'] = $message;
-        header("Location: errorPage.php"); // Assurez-vous que cette redirection est appropriée
-        exit();
+        $consultationId = (int) $_GET['consultationId'];
+        $patientId = $_GET['patientId']; // Assurez-vous de sécuriser et de valider cet ID avant utilisation
+        $consultation = $this->model->getConsultationById($patientId, $consultationId);
+
+        if ($consultation === null) {
+            die('Aucune consultation trouvée avec cet ID');
+        }
+
+        require_once('src/views/ViewVoirCompteRendu.php');
     }
 }

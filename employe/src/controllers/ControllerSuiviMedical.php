@@ -12,10 +12,12 @@ class ControllerSuiviMedical {
 
     public function main() {
         $patientId = $_GET['patientId'] ?? 'default_id'; 
-        $consultation_id = $_GET['consultation_id'] ?? 'default_id'; 
-        $comptesRendus = $this->model->recupererComptesRendus($patientId);
+        $service = $_GET['service'] ?? null; // Récupération du service depuis la requête GET
+
+        // Passer le patientId et le service au modèle
+        $comptesRendus = $this->model->recupererComptesRendus($patientId, $service);
         require_once(BASE_PATH . '/src/views/ViewSuiviMedical.php');
     }
 }
 
-new ControllerSuiviMedical(); 
+new ControllerSuiviMedical();

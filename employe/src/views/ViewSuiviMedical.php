@@ -230,10 +230,10 @@ if (!isset($_SESSION['mail'])) {
             <label for="service">Service :</label>
             <select name="service" id="service" onchange="this.form.submit()">
                 <option value="">Choisir un service</option>
-                <option value="cardiologie" <?= $_GET['service'] === 'cardiologie' ? 'selected' : '' ?>>Cardiologie</option>
-                <option value="chirurgie" <?= $_GET['service'] === 'chirurgie' ? 'selected' : '' ?>>Chirurgie</option>
-                <option value="radiologie" <?= $_GET['service'] === 'radiologie' ? 'selected' : '' ?>>Radiologie</option>
-                <option value="urgences" <?= $_GET['service'] === 'urgences' ? 'selected' : '' ?>>Urgences</option>
+                <option value="cardiologie" <?= (isset($_GET['service']) && $_GET['service'] === 'cardiologie') ? 'selected' : '' ?>>Cardiologie</option>
+                <option value="chirurgie" <?= (isset($_GET['service']) && $_GET['service'] === 'chirurgie') ? 'selected' : '' ?>>Chirurgie</option>
+                <option value="radiologie" <?= (isset($_GET['service']) && $_GET['service'] === 'radiologie') ? 'selected' : '' ?>>Radiologie</option>
+                <option value="urgences" <?= (isset($_GET['service']) && $_GET['service'] === 'urgences') ? 'selected' : '' ?>>Urgences</option>
             </select>
         </form>
     </div>

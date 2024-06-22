@@ -36,11 +36,11 @@
         <form id="patientForm" method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
             <div class="row">
                 <div class="column">
-                    <label for="nom">Nom</label>
+                    <label for="nom">Nom</label><br />
                     <input type="text" id="nom" name="nom">
                 </div>
                 <div class="column">
-                    <label for="prenom">Prénom</label>
+                    <label for="prenom">Prénom</label><br />
                     <input type="text" id="prenom" name="prenom">
                 </div>
                 <div class="column">

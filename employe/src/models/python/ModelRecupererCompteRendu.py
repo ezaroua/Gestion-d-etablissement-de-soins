@@ -47,7 +47,8 @@ for consultation in consultations:
         "numero_securite_sociale": numero_securite_sociale,
         "consultation_id": consultation.get('consultation_id', ''),
         "prenom": informations.get('prenom', ''),
-        "nom": informations.get('nom', '')
+        "nom": informations.get('nom', ''),
+        "service": service
     })
 
 print(json.dumps(resultats))

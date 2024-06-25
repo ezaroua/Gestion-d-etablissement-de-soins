@@ -249,9 +249,10 @@ if (!isset($_SESSION['mail'])) {
                         <td><?= htmlspecialchars($compteRendu['date'] ?? '') ?></td>
                         <td><?= htmlspecialchars($compteRendu['motif'] ?? '') ?></td>
                         <td><?= htmlspecialchars($compteRendu['nom_medecin'] ?? '') ?></td>
-                        <td>  </td>
-                        <td><a href="?url=VoirCompteRendu&consultationId=<?= htmlspecialchars($compteRendu['consultation_id'] ?? '') ?>&patientId=<?= htmlspecialchars($patientId ?? '') ?>">Voir Détails</a></td>
+                        <td><?= isset($compteRendu['service']) ? htmlspecialchars($compteRendu['service']) : 'Service non spécifié' ?></td>
+                        <td><a href="?url=VoirCompteRendu&consultationId=<?= htmlspecialchars($compteRendu['consultation_id'] ?? '') ?>&patientId=<?= htmlspecialchars($patientId ?? '') ?>&service=<?= $compteRendu['service'] ?>">Voir Détails</a></td>
                     </tr>
+                    
                 <?php endforeach; ?>
             <?php else : ?>
                 <tr>
@@ -262,7 +263,7 @@ if (!isset($_SESSION['mail'])) {
     </div>
 
     <div class="center-buttons">
-        <a href="?url=AjoutCompteRendu&patientId=<?= htmlspecialchars($patientId) ?>">Ajouter un compte rendu</a>
+        <a href="?url=AjoutCompteRendu&patientId=<?= htmlspecialchars($patientId) ?>&=<?= $service ?>">Ajouter un compte rendu</a>
     </div>
     <script src="static/js/script.js"></script>
 </body>

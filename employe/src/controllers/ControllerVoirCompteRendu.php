@@ -20,8 +20,10 @@ class ControllerVoirCompteRendu {
         }
 
         $consultationId = (int) $_GET['consultationId'];
-        $patientId = $_GET['patientId']; // Assurez-vous de sécuriser et de valider cet ID avant utilisation
-        $consultation = $this->model->getConsultationById($patientId, $consultationId);
+        $patientId = $_GET['patientId'];
+        $service = $_GET['service'];
+        $consultation = $this->model->getConsultationById($patientId, $consultationId, $service);
+        
 
         if ($consultation === null) {
             die('Aucune consultation trouvée avec cet ID');

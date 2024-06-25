@@ -1,19 +1,23 @@
 <?php
 require 'Database.php';
 class ModelVoirCompteRendu {
-    public function getConsultationById($id_user, $consultation_id) {
-        $command = "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:/xampp/htdocs/projetAnnuelB3ESGI/employe/src/models/python/ModelVoirCompteRendu.py " . escapeshellarg($id_user) . " " . escapeshellarg($consultation_id) . " 2>&1";
+    public function getConsultationById($id_user, $consultation_id, $service) {
+        $id_user = escapeshellarg($id_user ?? '');
+        $consultation_id = escapeshellarg($consultation_id ?? '');
+        $service = escapeshellarg($service ?? '');
+    
+        $command = "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:/xampp/htdocs/projetAnnuelB3ESGI/employe/src/models/python/ModelVoirCompteRendu.py $id_user $consultation_id $service 2>&1";
         exec($command, $output, $return_var);
-
+    
         if ($return_var != 0) {
             error_log("Erreur lors de l'exécution du script Python: " . implode("\n", $output));
             return null; // Retourne null si une erreur survient
         }
 
         $data = json_decode(implode("", $output), true);
-if (isset($data['error'])) {
-    error_log("Erreur: " . $data['error']);
-    return null;
+    if (isset($data['error'])) {
+        error_log("Erreur: " . $data['error']);
+        return null;
 }
 
 return [

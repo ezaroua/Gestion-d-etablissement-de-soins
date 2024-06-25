@@ -19,6 +19,11 @@ if (!isset($_SESSION['mail'])) {
     <div class="navbar">
         <a href="?url=Accueil">ACCUEIL</a>
         <a href="?url=CreationPatient">PATIENT</a>
+        <?php
+        if ($_SESSION['poste'] == "Chef Service") {
+            echo "<a href='?url=CreationEmploye'>AJOUT EMPLOYE</a>";
+        }
+        ?>
         <div class="dropdown">
             <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
             <div class="dropdown-content">

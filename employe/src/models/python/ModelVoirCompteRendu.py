@@ -2,16 +2,28 @@ import sys
 import json
 from pymongo import MongoClient
 
+def log(message):
+    """ Journalise les messages sur stderr pour le débogage. """
+    print(message, file=sys.stderr)
+    
 if len(sys.argv) < 3:
     print(json.dumps({"error": "ID utilisateur et ID de consultation sont nécessaires"}))
     sys.exit(1)
 
 id_user = sys.argv[1]
 consultation_id = int(sys.argv[2])
+service = sys.argv[3]
 
-client = MongoClient('mongodb://localhost:27017/')
-db = client['urgences']
-collection = db['patient']
+try:
+    client = MongoClient('mongodb://localhost:27017/', unicode_decode_error_handler='ignore')
+    if service.strip() == "":
+        log("Le nom de la base de données ne peut pas être vide")
+        sys.exit(1)
+    db = client[service]
+    collection = db['patient']
+except Exception as e:
+    log(f"Erreur de connexion à MongoDB: {e}")
+    sys.exit(1)
 
 # Trouver la consultation spécifique
 query = {

@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "666d52601bc1aff81e739db6"
+  },
+  "numero_securite_sociale": "12345678922222",
+  "Informations": {
+    "nom": "Abdel",
+    "prenom": "Ilias",
+    "sexe": "M",
+    "mail": "ilias@gmail.com",
+    "date_naissance": "2000-02-02",
+    "profession": "commercant",
+    "situation_familial": "célibataire",
+    "adresse": "1 route des courgette",
+    "cp": "69006",
+    "ville": "Lyon",
+    "pays": "France",
+    "telephone": "0666666666",
+    "type_assurance": "Assurance complémentaire",
+    "contacte_cas_urgence": "RAS",
+    "tel_cas_urgence": "0666666666",
+    "lien_cas_urgence": "",
+    "medecin_traitant": "Letoublon",
+    "langue": "Français",
+    "id_user": "11"
+  }
+},
+{
+  "_id": {
+    "$oid": "666d52efdb7754a45e8e34b0"
+  },
+  "numero_securite_sociale": "12345678900000",
+  "Informations": {
+    "nom": "Roustan",
+    "prenom": "Liam",
+    "sexe": "M",
+    "mail": "liam@gmail.com",
+    "date_naissance": "2002-01-01",
+    "profession": "Etudiant",
+    "situation_familial": "célibataire",
+    "adresse": "3 rue des moulins",
+    "cp": "69009",
+    "ville": "Lyon",
+    "pays": "France",
+    "telephone": "0700000777",
+    "type_assurance": "Mutuelle",
+    "contacte_cas_urgence": "RAS",
+    "tel_cas_urgence": "",
+    "lien_cas_urgence": "",
+    "medecin_traitant": "Letoublon",
+    "langue": "Français",
+    "id_user": "9"
+  }
+}]

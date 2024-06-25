@@ -1,6 +1,6 @@
 <?php
 
-require 'Database.php'; // Inclure le fichier de connexion à la base de données
+require_once 'Database.php'; // Inclure le fichier de connexion à la base de données
 
 abstract class Model
 {

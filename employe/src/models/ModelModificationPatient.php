@@ -7,7 +7,8 @@ class ModelModificationPatient
     private $bdd;
     private $chemin_script_python_insertion = "src/models/python/ModeleInsertionPatient.py";
     private $chemin_script_python_modification = "src/models/python/ModeleModificationPatient.py";
-    private $chemin_exec_python = "C:\\Users\\thoma\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+    private $chemin_exec_python = "C:\Users\User\AppData\Local\Programs\Python\Python312\python.exe";
+    //private $chemin_exec_python = "C:\\Users\\thoma\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
 
     public function __construct($bdd)
     {

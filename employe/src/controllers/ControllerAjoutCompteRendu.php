@@ -23,19 +23,20 @@ class ControllerAjoutCompteRendu
             $motif = htmlspecialchars($_POST['motif'], ENT_QUOTES, 'UTF-8');
             $compteRendu = htmlspecialchars($_POST['compteRendu'], ENT_QUOTES, 'UTF-8');
             $nom_medecin = htmlspecialchars($_SESSION['nom'] . " " . $_SESSION['prenom'], ENT_QUOTES, 'UTF-8');
+            $id_service = htmlspecialchars($_SESSION['id_service'], ENT_QUOTES, 'UTF-8');
+            
+            error_log("Patient ID: $patientId, Date: $date, Motif: $motif, Compte Rendu: $compteRendu, nom_medecin: $nom_medecin, id_service: $id_service");
 
-            error_log("Patient ID: $patientId, Date: $date, Motif: $motif, Compte Rendu: $compteRendu, nom_medecin: $nom_medecin");
-
-            $this->saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin );
+            $this->saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin , $id_service);
         } else {
             $this->showForm();
         }
     }
 
-    public function saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin)
+    public function saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin, $id_service)
     {
         // Logique de sauvegarde de compte rendu
-        $result = $this->_model->creerDansNoSQL($patientId, $date, $motif, $compteRendu, $nom_medecin);
+        $result = $this->_model->creerDansNoSQL($patientId, $date, $motif, $compteRendu, $nom_medecin, $id_service);
         error_log("Result of insertion: $result");
 
         // Redirection

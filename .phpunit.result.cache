@@ -1,0 +1,1 @@
+{"version":1,"defects":{"ControllerAccueilMedicalTest::testConstructorWithoutSession":8,"ControllerAccueilMedicalTest::testConstructorWithSessionValid":8,"ControllerAccueilMedicalTest::testPatientsFunctionality":8},"times":[]}

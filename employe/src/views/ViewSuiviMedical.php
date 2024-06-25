@@ -14,7 +14,6 @@ if (!isset($_SESSION['mail'])) {
 <head>
     <meta charset="UTF-8">
     <title>Suivi Médical</title>
-  
 
     <style>
         body {
@@ -164,11 +163,9 @@ if (!isset($_SESSION['mail'])) {
             background-color: #218838;
         }
 
-         .filter-container {
-        
+        .filter-container {
             padding: 15px;
             border-radius: 5px;
-            
             margin: 20px auto;
             width: 80%;
             display: flex;
@@ -181,7 +178,6 @@ if (!isset($_SESSION['mail'])) {
             padding-top: 20px;
             padding-bottom: 20px;   
             margin-left: 0px;
-
         }
 
         .filter-container form {
@@ -198,7 +194,7 @@ if (!isset($_SESSION['mail'])) {
 
     </style>
 
-<script>
+    <script>
         function submitForm() {
             document.getElementById("serviceForm").submit();
         }
@@ -217,16 +213,15 @@ if (!isset($_SESSION['mail'])) {
         </div>
     </div>
 
-    
     <div class="main-header">
-        <h2>Suivi Médical de <?= htmlspecialchars($patientId) ?></h2>
+        <h2>Suivi Médical de <?= htmlspecialchars($nom ?? 'Inconnu') ?></h2>
     </div>
-
 
     <div class="filter-container">
         <form action="" method="GET">
             <input type="hidden" name="url" value="SuiviMedical">
             <input type="hidden" name="patientId" value="<?= htmlspecialchars($patientId) ?>">
+            <input type="hidden" name="nom" value="<?= htmlspecialchars($nom) ?>">
             <label for="service">Service :</label>
             <select name="service" id="service" onchange="this.form.submit()">
                 <option value="">Choisir un service</option>
@@ -237,7 +232,6 @@ if (!isset($_SESSION['mail'])) {
             </select>
         </form>
     </div>
-
 
     <div class="table-container">
         <table>
@@ -252,11 +246,11 @@ if (!isset($_SESSION['mail'])) {
             if (!empty($comptesRendus)) : ?>
                 <?php foreach ($comptesRendus as $compteRendu) : ?>
                     <tr>
-                        <td><?= htmlspecialchars($compteRendu['date']) ?></td>
-                        <td><?= htmlspecialchars($compteRendu['motif']) ?></td>
-                        <td><?= htmlspecialchars($compteRendu['nom_medecin']) ?> </th>
+                        <td><?= htmlspecialchars($compteRendu['date'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($compteRendu['motif'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($compteRendu['nom_medecin'] ?? '') ?></td>
                         <td>  </td>
-                        <td><a href="?url=VoirCompteRendu&consultationId=<?= htmlspecialchars($compteRendu['consultation_id']) ?>&patientId=<?= htmlspecialchars($patientId) ?>">Voir Détails</a></td>
+                        <td><a href="?url=VoirCompteRendu&consultationId=<?= htmlspecialchars($compteRendu['consultation_id'] ?? '') ?>&patientId=<?= htmlspecialchars($patientId ?? '') ?>">Voir Détails</a></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else : ?>

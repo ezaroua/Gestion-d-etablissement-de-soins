@@ -1,42 +1,38 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['mail'])) {
+    header('Location: ?url=ConnexionEmploye');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <title>Interface de Gestion des Patients</title>
     <link rel="stylesheet" href="static/css/styles.css">
-    <style>
-        
-    </style>
 </head>
-
 <body>
     <div class="navbar">
         <a href="?url=Accueil">ACCUEIL</a>
         <a href="?url=CreationPatient">PATIENT</a>
-
-        <a href="">REJOIGNEZ NOUS</a>
-        <!--TODO: Ajoutez d'autres liens de navigation-->
-
-
-        <a href="?url=GestionDemandes">DEMANDES</a>
         <div class="dropdown">
             <button class="dropbtn"><img src="static/image/user-icon.png" alt="User"></button>
             <div class="dropdown-content">
-                <a href="?url=MonCompte">Mon compte</a>
+                <a href="#">Mon compte</a>
                 <a href="?url=ModificationPassword">Changer mon mot de passe</a>
                 <a href="?url=Deconnexion">Déconnexion</a>
             </div>
         </div>
-
     </div>
-
     <div class="main-header">
-        <h2>Bienvenue <?= $_SESSION['prenom'] ?> <?= $_SESSION['nom'] ?></h2>
+        <h2>Bienvenue <?= htmlspecialchars($_SESSION['prenom']) ?> <?= htmlspecialchars($_SESSION['nom']) ?></h2>
     </div>
-
     <div class="search-container">
-        <form id="patientForm" method="post" action="index.php?action=search">
+        <form id="patientForm" method="post" action="?url=Accueil">
             <div class="row">
                 <div class="column">
                     <label for="nom">Nom</label>
@@ -63,23 +59,20 @@
                 <div class="column">
                     <label for="province">Province</label>
                     <select id="province" name="province">
-                    <option value="">Sélectionner...</option>
+                        <option value="">Sélectionner...</option>
                     </select>
                 </div>
                 <div class="column">
-                    <label for="service">service</label>
+                    <label for="service">Service</label>
                     <input type="text" id="service" name="service">
                 </div>
-
             </div>
-
             <div class="center-buttons">
                 <button type="submit">Chercher</button>
                 <button type="button" id="clearButton">Vider</button> 
             </div>
         </form>
     </div>
-
     <table>
         <tr>
             <th>ID Personne</th>
@@ -91,22 +84,21 @@
         </tr>
         <?php if (!empty($patients)) : ?>
             <?php foreach ($patients as $patient) : ?>
-                <tr class='clickable-row' data-id="<?= $patient->id_user() ?>">
-                    <td><?= $patient->id_user() ?></td>
-                    <td><?= $patient->nom() . ' ' . $patient->prenom() ?> </td>
-                    <td><?= $patient->date_naissance() ?></td>
-                    <td><?= $patient->sexe() ?></td>
-                    <td><?= $patient->num_sec() ?></td>
-                    <td><?= $patient->MedecinTraitant() ?></td>
+                <tr class='clickable-row' data-id="<?= htmlspecialchars($patient->id_user()) ?>">
+                    <td><?= htmlspecialchars($patient->id_user()) ?></td>
+                    <td><?= htmlspecialchars($patient->nom() . ' ' . $patient->prenom()) ?> </td>
+                    <td><?= htmlspecialchars($patient->date_naissance()) ?></td>
+                    <td><?= htmlspecialchars($patient->sexe()) ?></td>
+                    <td><?= htmlspecialchars($patient->num_sec()) ?></td>
+                    <td><?= htmlspecialchars($patient->MedecinTraitant()) ?></td>
                 </tr>
             <?php endforeach; ?>
         <?php else : ?>
             <tr>
-                <td colspan="6">Aucun patient trouvé.</td>
+                <td colspan="7">Aucun patient trouvé.</td>
             </tr>
         <?php endif; ?>
     </table>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var rows = document.querySelectorAll('.clickable-row');
@@ -118,7 +110,5 @@
             });
         });
     </script>
-
 </body>
-
 </html>

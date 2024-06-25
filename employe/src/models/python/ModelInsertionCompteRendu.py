@@ -1,6 +1,7 @@
 import sys
-import base64
 from pymongo import MongoClient
+import base64
+
 
 def create_sequence(db, sequence_name):
     if db.sequences.find_one({"_id": sequence_name}) is None:
@@ -21,16 +22,21 @@ def get_next_sequence_value(db, sequence_name):
     return sequence_document['seq']
 
 def main():
-    if len(sys.argv) != 6:
-        print("Usage: python ModelInsertionCompteRendu.py <id_user> <date> <motif> <compte_rendu_encoded> <nom_medecin>")
+    if len(sys.argv) != 7:
+        print("Usage: python ModelInsertionCompteRendu.py <id_user> <date> <motif> <compte_rendu> <nom_medecin> <id_service>")
         sys.exit(1)
 
-    id_user, date_consultation, motif_consultation, compte_rendu_encoded, nom_medecin = sys.argv[1:6]
-    compte_rendu = base64.b64decode(compte_rendu_encoded).decode('utf-8')  # Décodez ici le texte encodé
-
+    id_user, date_consultation, motif_consultation, compte_rendu, nom_medecin, id_service = sys.argv[1:7]
+    compte_rendu = base64.b64decode(compte_rendu).decode('utf-8')  # Décodez ici le texte encodé
     client = MongoClient('mongodb://localhost:27017/')
-    db = client['urgences']
-
+    
+    if id_service == "2":
+        db = client['urgences']
+    elif id_service == "3":
+        db = client['radiologie']
+    else:
+        print("ID de service non reconnu.")
+        sys.exit(1)
 
     create_sequence(db, 'consultation_id')
     consultation_id = get_next_sequence_value(db, 'consultation_id')
@@ -41,7 +47,7 @@ def main():
             "consultation_id": consultation_id,
             "date": date_consultation,
             "motif": motif_consultation,
-            "compte_rendu": compte_rendu,
+            "compte_rendu": compte_rendu,  # Utilisation du texte brut
             "nom_medecin": nom_medecin
         }}}
     )
@@ -53,3 +59,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh

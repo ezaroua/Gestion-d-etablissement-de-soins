@@ -3,7 +3,7 @@ import json
 from pymongo import MongoClient
 
 def log(message):
-    """ Log messages to stderr for debugging purposes. """
+    """ Journalise les messages sur stderr pour le débogage. """
     print(message, file=sys.stderr)
 
 if len(sys.argv) < 3:
@@ -25,19 +25,29 @@ except Exception as e:
     sys.exit(1)
 
 query = {"Informations.id_user": id_user}
-consultations = collection.find(query)
-results = list(consultations)
+projection = {"consultations": 1, "Informations": 1, "numero_securite_sociale": 1} 
+patient = collection.find_one(query, projection)
 
-if not results:
-    log("Aucune consultation trouvée correspondant aux critères.")
-else:
-    for patient in results:
-        for consultation in patient.get("consultations", []):
-            data = {
-                'date': consultation.get('date', 'Non spécifié'),
-                'motif': consultation.get('motif', 'Non spécifié'),
-                'compte_rendu': consultation.get('compte_rendu', 'Non spécifié'),
-                'nom_medecin': consultation.get('nom_medecin', 'Non spécifié'),
-                'consultation_id': consultation.get('consultation_id', 'Non spécifié')
-            }
-            print(json.dumps(data))
+if not patient:
+    print(json.dumps({"error": "Aucune consultation trouvée avec les IDs spécifiés"}))
+    sys.exit(1)
+
+# Retourner les détails de toutes les consultations trouvées et les informations générales du patient
+consultations = patient['consultations'] if 'consultations' in patient else []
+informations = patient['Informations'] if 'Informations' in patient else {}
+numero_securite_sociale = patient.get('numero_securite_sociale', '')
+
+resultats = []
+for consultation in consultations:
+    resultats.append({
+        "date": consultation.get('date', ''),
+        "motif": consultation.get('motif', ''),
+        "compte_rendu": consultation.get('compte_rendu', ''),
+        "nom_medecin": consultation.get('nom_medecin', ''),
+        "numero_securite_sociale": numero_securite_sociale,
+        "consultation_id": consultation.get('consultation_id', ''),
+        "prenom": informations.get('prenom', ''),
+        "nom": informations.get('nom', '')
+    })
+
+print(json.dumps(resultats))

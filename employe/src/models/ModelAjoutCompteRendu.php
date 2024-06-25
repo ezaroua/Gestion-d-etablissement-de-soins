@@ -5,7 +5,7 @@ class ModelAjoutCompteRendu
     private $chemin_exec_python = "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
     private $chemin_script_python = "C:\\xampp\\htdocs\\projetAnnuelB3ESGI\\employe\\src\\models\\python\\ModelInsertionCompteRendu.py";
 
-    public function creerDansNoSQL($id_user, $date, $motif, $compteRendu , $nom_medecin )
+    public function creerDansNoSQL($id_user, $date, $motif, $compteRendu, $nom_medecin, $id_service)
     {
         $compteRenduEncoded = base64_encode($compteRendu); // Bonne pratique : encoder pour gérer les caractères spéciaux
         $command = escapeshellcmd($this->chemin_exec_python) . ' ' .
@@ -14,7 +14,8 @@ class ModelAjoutCompteRendu
                    escapeshellarg($date) . ' ' .
                    escapeshellarg($motif) . ' ' .
                    escapeshellarg($compteRenduEncoded) . ' ' .
-                   escapeshellarg($nom_medecin);
+                   escapeshellarg($nom_medecin) . ' ' .
+                   escapeshellarg($id_service);
         
         error_log("Executing command: $command");
 

@@ -9,9 +9,10 @@
 
 <body>
     <div class="navbar">
-        <a href="#home">ACCUEIL</a>
-        <a href="#nursing"></a>
-        <!--TODO: Ajoutez d'autres liens de navigation-->
+        <a href="?url=AccueilPatient">Accueil</a>
+        <div class="dropdown">
+            <a href="?url=DeconnexionPatient">Déconnexion</a>
+        </div>
     </div>
 
     <div class="main-header">

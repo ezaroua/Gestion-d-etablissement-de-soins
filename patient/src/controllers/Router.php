@@ -34,8 +34,8 @@ class Router
                     throw new Exception('Controller file ' . $controllerFile . ' not found.');
                 }
             } else {
-                require_once('src/controllers/ControllerAccueilPatient.php');
-                $this->_ctrl = new ControllerAccueilPatient($url);
+                require_once('src/controllers/ControllerConnexionPatient.php');
+                $this->_ctrl = new ControllerConnexionPatient($url);
             }
 
             // Gestion des erreurs

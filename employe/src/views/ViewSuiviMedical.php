@@ -214,7 +214,13 @@ if (!isset($_SESSION['mail'])) {
     </div>
 
     <div class="main-header">
-        <h2>Suivi Médical de <?= htmlspecialchars($nom ?? 'Inconnu') ?></h2>
+        <?php foreach ($comptesRendus as $compteRendu) : ?>
+        <?php $nomPatient = isset($compteRendu['nom']) ? htmlspecialchars($compteRendu['nom']) . ' ' . htmlspecialchars($compteRendu['prenom']) : 'Nom inconnu';?>
+        <?php endforeach; ?>
+
+            
+            <h2>Suivi Médical de <?=  htmlspecialchars(urldecode($_GET['nom'] ?? 'Nom non fourni')) ?></h2>
+ 
     </div>
 
     <div class="filter-container">
@@ -239,7 +245,6 @@ if (!isset($_SESSION['mail'])) {
                 <th>Date</th>
                 <th>Motif de consultation</th>
                 <th> Nom du médecin </th>
-                <th> Service </th>
                 <th>Compte Rendu</th>
             </tr>
             <?php 
@@ -249,7 +254,6 @@ if (!isset($_SESSION['mail'])) {
                         <td><?= htmlspecialchars($compteRendu['date'] ?? '') ?></td>
                         <td><?= htmlspecialchars($compteRendu['motif'] ?? '') ?></td>
                         <td><?= htmlspecialchars($compteRendu['nom_medecin'] ?? '') ?></td>
-                        <td><?= isset($compteRendu['service']) ? htmlspecialchars($compteRendu['service']) : 'Service non spécifié' ?></td>
                         <td><a href="?url=VoirCompteRendu&consultationId=<?= htmlspecialchars($compteRendu['consultation_id'] ?? '') ?>&patientId=<?= htmlspecialchars($patientId ?? '') ?>&service=<?= $compteRendu['service'] ?>">Voir Détails</a></td>
                     </tr>
                     
@@ -263,7 +267,7 @@ if (!isset($_SESSION['mail'])) {
     </div>
 
     <div class="center-buttons">
-        <a href="?url=AjoutCompteRendu&patientId=<?= htmlspecialchars($patientId) ?>&=<?= $service ?>">Ajouter un compte rendu</a>
+        <a href="?url=AjoutCompteRendu&patientId=<?= htmlspecialchars($patientId) ?>&service=<?= $service?>&nom=<?= htmlspecialchars($nom)?>">Ajouter un compte rendu</a>
     </div>
     <script src="static/js/script.js"></script>
 </body>

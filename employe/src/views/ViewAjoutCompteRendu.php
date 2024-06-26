@@ -154,11 +154,14 @@
             </div>
         </div>
         <div class="main-header">
-            <h2>Ajouter un Compte Rendu pour <?= isset($_GET['patientId']) ? htmlspecialchars($_GET['patientId']) : "Non défini"; ?></h2>
+            <h2>Ajouter un Compte Rendu pour <?= htmlspecialchars(urldecode($_GET['nom'] ?? 'Nom non fourni')) ?></h2>
         </div>
+
+
         <div class="compte-rendu-container">
-            <form id="compteRenduForm" method="post" action="?url=AjoutCompteRendu&patientId=<?= htmlspecialchars($_GET['patientId']) ?>">
+            <form id="compteRenduForm" method="post" action="?url=AjoutCompteRendu&patientId=<?= htmlspecialchars($_GET['patientId'])?>&nom=<?= htmlspecialchars($_GET['nom'] ?? '') ?>">
                 <input type="hidden" name="patientId" value="<?= htmlspecialchars($_GET['patientId']) ?>">
+                <input type="hidden" name="nom" value="<?= htmlspecialchars($_GET['nom'] ?? '') ?>">
                 <div class="row">
                     <div class="column">
                         <label for="date">Date</label>
@@ -186,11 +189,8 @@
         <script>
             CKEDITOR.replace('compteRendu', {
                 height: 400,
-                removeButtons: ''  // Assurez-vous que les boutons pour les styles sont bien disponibles
+                removeButtons: ''
             });
         </script>
-        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-
-
     </body>
 </html>

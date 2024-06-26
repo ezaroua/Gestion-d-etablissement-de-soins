@@ -24,32 +24,34 @@ class ControllerAjoutCompteRendu
             $compteRendu = htmlspecialchars($_POST['compteRendu'], ENT_QUOTES, 'UTF-8');
             $nom_medecin = htmlspecialchars($_SESSION['nom'] . " " . $_SESSION['prenom'], ENT_QUOTES, 'UTF-8');
             $id_service = htmlspecialchars($_SESSION['id_service'], ENT_QUOTES, 'UTF-8');
+            $nom = $_GET['nom'] ?? 'Unknown';  
             
             error_log("Patient ID: $patientId, Date: $date, Motif: $motif, Compte Rendu: $compteRendu, nom_medecin: $nom_medecin, id_service: $id_service");
 
-            $this->saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin , $id_service);
+            $this->saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin, $id_service, $nom);
         } else {
             $this->showForm();
         }
     }
 
-    public function saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin, $id_service)
+    public function saveCompteRendu($patientId, $date, $motif, $compteRendu, $nom_medecin, $id_service, $nom)
     {
-        // Logique de sauvegarde de compte rendu
+        
         $result = $this->_model->creerDansNoSQL($patientId, $date, $motif, $compteRendu, $nom_medecin, $id_service);
         error_log("Result of insertion: $result");
 
-        // Redirection
-        header('Location: ?url=SuiviMedical&patientId=' . urlencode($patientId));
+     
+        header('Location: ?url=SuiviMedical&patientId=' . urlencode($patientId) . '&nom=' . urlencode($nom));
         exit();
     }
 
     public function showForm()
     {
-        // Inclure la vue pour le formulaire d'ajout de compte rendu
+        // Include the view for adding a medical report
         require_once('src/views/ViewAjoutCompteRendu.php');
     }
 }
 
-// Exemple d'utilisation du contrôleur
+// Instance of the controller
 $controller = new ControllerAjoutCompteRendu();
+?>

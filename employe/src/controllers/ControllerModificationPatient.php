@@ -6,9 +6,21 @@ class ControllerModificationPatient
 {
     private $model;
     private $modelNOsql;
-
+    
     public function __construct($url)
     {
+        // Vérifiez si les variables de session 'nom' et 'prenom' sont présentes
+        if (!isset($_SESSION['nom']) || !isset($_SESSION['prenom'])) {
+            // Rediriger vers une page de connexion ou afficher un message d'erreur
+            header('Location: index.php');
+            exit(); // Arrêter l'exécution du script
+        }
+
+        // Vérifiez si des paramètres supplémentaires sont fournis dans l'URL
+        if (isset($url) && is_array($url) && count($url) > 1) {
+            throw new Exception('Page introuvable');
+        }
+
         // Vérifiez si l'URL contient au moins un paramètre
         if (isset($_GET['id'])) {
             // Instancier le modèle

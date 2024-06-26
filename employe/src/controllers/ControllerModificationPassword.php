@@ -5,18 +5,20 @@ class ControllerModificationPassword
 {
     private $_model;
 
-    public function __construct($bdd)
+    public function __construct($url)
     {
-
-    
-        if (isset($url) && is_array($url) && count($url) > 1){
-            throw new Exception('Page introuvable');
-        }      
-        else{
-            $this->_model = new ModelModificationPassword($bdd);
-            $this->handleRequest();
+        // Vérifiez si des paramètres supplémentaires sont fournis dans l'URL
+        // et gérez-les ou lancez une exception si l'URL n'est pas valide
+        // Vérifier si les variables de session 'nom' et 'prenom' sont présentes
+        if (!isset($_SESSION['nom']) || !isset($_SESSION['prenom'])) {
+            // Rediriger vers une page de connexion ou afficher un message d'erreur
+            header('Location: index.php');
+            exit(); // Arrêter l'exécution du script
         }
-      
+        if (isset($url) && is_array($url) && count($url) > 1)
+            throw new Exception('Page introuvable');
+        else
+            $this->handleRequest();
     }
 
     public function handleRequest()
@@ -28,6 +30,7 @@ class ControllerModificationPassword
         }
     }
 
+    
     private function handleChangePassword()
     {
         $currentPassword = htmlspecialchars($_POST['currentPassword']);

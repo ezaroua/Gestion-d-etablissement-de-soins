@@ -7,7 +7,9 @@ class ModelRecupererCompteRendu
         $id_user = escapeshellarg($id_user);
         $service = isset($service) ? escapeshellarg($service) : '';
         
-        $command = "C:\Users\User\AppData\Local\Programs\Python\Python312\python.exe C:/xampp/htdocs/projetAnnuelB3ESGI/employe/src/models/python/ModelRecupererCompteRendu.py $id_user $service 2>&1";
+        //$command = "C:\Users\User\AppData\Local\Programs\Python\Python312\python.exe C:/xampp/htdocs/projetAnnuelB3ESGI/employe/src/models/python/ModelRecupererCompteRendu.py $id_user $service 2>&1";
+
+        $command = "C:\\Python312\\python.exe C:/xampp/htdocs/projetAnnuelB3ESGI/employe/src/models/python/ModelRecupererCompteRendu.py $id_user $service 2>&1";
         exec($command, $output, $return_var);
 
         $comptesRendus = [];

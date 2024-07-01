@@ -4,8 +4,9 @@ require 'Database.php'; // Inclure le fichier de connexion à la base de donnée
 class ModeleRecupererPatientNoSQL
 {
     private $chemin_script_python = "src/models/python/ModeleRecupererPatient.py";
-    private $chemin_exec_python = "C:\Users\User\AppData\Local\Programs\Python\Python312\python.exe";
+    //private $chemin_exec_python = "C:\Users\User\AppData\Local\Programs\Python\Python312\python.exe";
     //private $chemin_exec_python = "C:\\Users\\thoma\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+    private $chemin_exec_python = "C:\Python312\python.exe";
     protected function getBdd()
     {
         return Database::getBdd();

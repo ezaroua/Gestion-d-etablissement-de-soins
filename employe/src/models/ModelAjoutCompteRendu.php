@@ -2,7 +2,8 @@
 
 class ModelAjoutCompteRendu
 {
-    private $chemin_exec_python = "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+    //private $chemin_exec_python = "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+    private $chemin_exec_python = "C:\Python312\python.exe";
     private $chemin_script_python = "C:\\xampp\\htdocs\\projetAnnuelB3ESGI\\employe\\src\\models\\python\\ModelInsertionCompteRendu.py";
 
     public function creerDansNoSQL($id_user, $date, $motif, $compteRendu, $nom_medecin, $id_service)

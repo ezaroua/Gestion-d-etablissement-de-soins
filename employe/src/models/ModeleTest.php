@@ -18,7 +18,8 @@ function transformerEnTableau($chaine)
 $service = 1;
 $id_user = "19";
 $chemin_script_python = "python/ModeleRecupererUnPatient.py";
-$chemin_exec_python = "C:\\Users\\thoma\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+//$chemin_exec_python = "C:\\Users\\thoma\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+$chemin_exec_python = "C:\Python312\python.exe";
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

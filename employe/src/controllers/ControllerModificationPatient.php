@@ -16,6 +16,13 @@ class ControllerModificationPatient
             exit(); // Arrêter l'exécution du script
         }
 
+        if  ($_SESSION['id_service'] != 1){
+
+            header('Location: ?url=AccueilMedical');
+            exit();
+
+        }
+
         // Vérifiez si des paramètres supplémentaires sont fournis dans l'URL
         if (isset($url) && is_array($url) && count($url) > 1) {
             throw new Exception('Page introuvable');

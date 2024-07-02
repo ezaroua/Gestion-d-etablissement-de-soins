@@ -6,7 +6,7 @@ class ControllerAccueilPatient
     public function __construct($url)
     {
         // Vérifier si les variables de session 'nom' et 'prenom' sont présentes
-        if (!isset($_SESSION['nom']) || !isset($_SESSION['prenom'])) {
+        if (!isset($_SESSION['nom']) || !isset($_SESSION['prenom']) || $_SESSION['statut'] != "Patient") {
             // Rediriger vers une page de connexion ou afficher un message d'erreur
             header('Location: index.php');
             exit(); // Arrêter l'exécution du script

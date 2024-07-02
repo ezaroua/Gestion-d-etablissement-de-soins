@@ -32,7 +32,7 @@ class ControllerConnexionPatient
 
         if ($connexion_result['success']) {
             $_SESSION['mail'] = $connexion_result['adresse_mail'];
-            $_SESSION['statut'] = $connexion_result['statut'];
+            $_SESSION['statut'] = "Patient";
         }
 
         if ($connexion_result['success']) { //On instencie les variables de session
